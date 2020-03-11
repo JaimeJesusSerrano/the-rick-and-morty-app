@@ -17,10 +17,6 @@ const Characters = () => {
 
   useEffect(() => {
     dispatch(fetchCharacters(debouncedSearchValue))
-    // dispatch({
-    //   type: 'CHARACTERS_FETCH_REQUESTED',
-    //   payload: { name: debouncedSearchValue },
-    // })
   }, [debouncedSearchValue, dispatch])
 
   return (

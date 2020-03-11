@@ -2,9 +2,9 @@ import { GridList, GridListTile } from '@material-ui/core'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Card from './Card'
-import { Character, CharacterInfo } from '../../../services/api/types'
+import { Character } from '../../../services/api/types'
 import { RootState } from '~Store/reducers'
 import { getCharacterResults } from '~Store/reducers/characters'
 
@@ -21,20 +21,21 @@ const StyledGridListTile = styled(GridListTile)`
 `
 
 const LazyList = () => {
-  const characterState = useSelector(
-    (state: RootState) => state.characterState
-  )
-
+  const characterState = useSelector((state: RootState) => state.characterState)
+  const { info, results } = characterState.results
+  console.log('characterState')
+  console.log(info)
+  console.log(results)
   const [hasMoreCharactersToLoad, setHasMoreCharactersToLoad] = useState(true)
-  const [characters, setCharacters] = useState(characterState.results)
+  // const [characters, setCharacters] = useState(characterState.results)
 
   const loadMoreCharacters = () => {
     setHasMoreCharactersToLoad(false)
   }
 
   const Items =
-    getCharacterResults(characterState).results &&
-    getCharacterResults(characterState).results.map((character: Character) => (
+    results &&
+    results.map((character: Character) => (
       <StyledGridListTile
         key={character.id}
         cols={1}

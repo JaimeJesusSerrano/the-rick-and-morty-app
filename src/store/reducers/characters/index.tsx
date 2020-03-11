@@ -1,6 +1,10 @@
 import { CharacterInfo } from '~Api/types'
 import { ReduxActionType } from '~Store/actions'
-import { FETCH_CHARACTERS } from '~Store/constants/characters'
+import {
+  FETCH_CHARACTERS,
+  FETCH_CHARACTERS_SUCCEEDED,
+  FETCH_CHARACTERS_FAILED,
+} from '~Store/constants/characters'
 
 interface CharacterStateType {
   loading: boolean
@@ -21,9 +25,9 @@ export const charactersReducer = (
   switch (action.type) {
     case FETCH_CHARACTERS:
       return { ...state, loading: true }
-    case 'CHARACTERS_FETCH_SUCCEEDED':
+    case FETCH_CHARACTERS_SUCCEEDED:
       return { ...state, results: action.payload, loading: false }
-    case 'CHARACTERS_FETCH_FAILED':
+    case FETCH_CHARACTERS_FAILED:
       return { ...state, error: action.payload }
     default:
       return initialState

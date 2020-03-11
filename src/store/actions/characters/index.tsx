@@ -1,6 +1,6 @@
 export const fetchCharacters = (value: any) => {
   return {
-    type: 'CHARACTERS_FETCH_REQUESTED',
+    type: 'FETCH_CHARACTERS_REQUESTED',
     payload: value
   }
 }

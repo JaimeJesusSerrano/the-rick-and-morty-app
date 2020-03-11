@@ -15,20 +15,17 @@ interface CardProps {
   character: Character
 }
 
-const Card = ({
-  character: { gender, image, location, name, origin, species, status },
-}: CardProps) => {
-  const StyledCard = styled(MaterialUiCard)`
+const StyledCard = styled(MaterialUiCard)`
     border-radius: 20px;
   `
 
-  const StyledCardMedia = styled(CardMedia)`
+const StyledCardMedia = styled(CardMedia)`
     height: 200px;
     position: relative;
     width: 200px;
   `
 
-  const StyledCardContent = styled(CardContent)`
+const StyledCardContent = styled(CardContent)`
     &:last-child {
       padding: 10px;
     }
@@ -36,6 +33,9 @@ const Card = ({
     padding: 10px;
   `
 
+const Card = ({
+  character: { gender, image, location, name, origin, species, status },
+}: CardProps) => {
   return (
     <StyledCard>
       <LazyLoadImage

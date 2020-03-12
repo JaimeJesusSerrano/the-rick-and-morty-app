@@ -1,6 +1,7 @@
 import {
   CHARACTER_LIST_FAILED,
   CHARACTER_LIST_FETCH,
+  CHARACTER_LIST_SEARCH,
   CHARACTER_LIST_SUCCEEDED,
 } from '~Store/constants/characterList'
 
@@ -39,8 +40,15 @@ export const characterListReducer = (
   action: ReduxActionType
 ) => {
   switch (action.type) {
+    case CHARACTER_LIST_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+      }
     case CHARACTER_LIST_FETCH:
       return { ...state, loading: true }
+    case CHARACTER_LIST_SEARCH:
+      return { ...initialState, loading: true }
     case CHARACTER_LIST_SUCCEEDED:
       return {
         ...state,
@@ -53,40 +61,19 @@ export const characterListReducer = (
         },
         totalPages: action.payload.info.pages,
       }
-    case CHARACTER_LIST_FAILED:
-      return {
-        ...state,
-        error: action.payload,
-      }
     default:
       return initialState
   }
 }
 
-let numberState = 0
-
-const counter = (num: number = numberState) => {
-  numberState += 1
-  return numberState
-}
-let characters: Character[] = []
-
-export const getCharacterListUntilPage = (
-  state: CharacterListStateType,
-  page: number
+export const getCharacterList = (
+  state: CharacterListStateType
 ) => {
-  type Characters = Character[]
-  const emptyCharacterArray: Characters = []
+  let characters: Character[] = []
+  const emptyCharacterArray: Character[] = []
 
-  console.log('state.pages')
-  console.log(state.pages)
   Object.entries(state.pages).map(([key, value]) => {
-    console.log('index')
-    console.log(key)
-    console.log(value)
-    console.log(page)
-    if (Number(key) >= 1 && Number(key) <= page) {
-      console.log(counter(1))
+    if (Number(key) >= 1 && Number(key)) {
       const newCharacters: Character[] = value
         ? Object.values(value)
         : emptyCharacterArray

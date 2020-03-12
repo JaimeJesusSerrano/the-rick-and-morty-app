@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Card as MaterialUiCard,
-  CardContent,
-  CardMedia,
-} from '@material-ui/core'
+import { Card as MaterialUiCard, CardContent } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import styled from 'styled-components'
@@ -16,22 +12,16 @@ interface CardProps {
 }
 
 const StyledCard = styled(MaterialUiCard)`
-    border-radius: 20px;
-  `
-
-const StyledCardMedia = styled(CardMedia)`
-    height: 200px;
-    position: relative;
-    width: 200px;
-  `
+  border-radius: 20px;
+`
 
 const StyledCardContent = styled(CardContent)`
-    &:last-child {
-      padding: 10px;
-    }
-    background-color: ${({ theme }) => theme.palette.secondary.main};
+  &:last-child {
     padding: 10px;
-  `
+  }
+  background-color: ${({ theme }) => theme.palette.secondary.main};
+  padding: 10px;
+`
 
 const Card = ({
   character: { gender, image, location, name, origin, species, status },

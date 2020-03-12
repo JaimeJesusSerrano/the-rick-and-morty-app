@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as Title } from '~Assets/img/characters_title.svg'
 import useDebounce from '~Hooks/useDebounce'
-import { fetchCharactersPage } from '~Store/actions/characterList'
+import { fetchCharactersSearch } from '~Store/actions/characterList'
 import Comparator from './components/Comparator'
 import LazyList from './components/LazyList'
 import SearchBar from './components/SearchBar'
@@ -12,11 +12,12 @@ const Characters = () => {
   const dispatch = useDispatch()
 
   const [searchValue, setSearchValue] = useState()
-  const debouncedSearchValue = useDebounce(searchValue, 500)
   const handleSearch = (value: string) => setSearchValue(value)
 
+  const debouncedSearchValue = useDebounce(searchValue, 500)
+
   useEffect(() => {
-    dispatch(fetchCharactersPage(1, debouncedSearchValue))
+    dispatch(fetchCharactersSearch(1, debouncedSearchValue))
   }, [debouncedSearchValue, dispatch])
 
   return (

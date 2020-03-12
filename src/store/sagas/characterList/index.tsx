@@ -34,7 +34,10 @@ function* getCharacters({ payload }: GetCharactersArgs) {
 }
 
 function* charactersSaga() {
-  yield all([takeLatest('CHARACTERS_LIST_FETCH_REQUESTED', getCharacters)])
+  yield all([
+    takeLatest('CHARACTER_LIST_SEARCH', getCharacters),
+    takeLatest('CHARACTER_LIST_FETCH', getCharacters),
+  ])
 }
 
 export default charactersSaga

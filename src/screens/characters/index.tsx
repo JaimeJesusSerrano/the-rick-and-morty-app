@@ -5,7 +5,7 @@ import { ReactComponent as Title } from '~Assets/img/characters_title.svg'
 import useDebounce from '~Hooks/useDebounce'
 import { fetchCharactersSearch } from '~Store/actions/characterList'
 import Comparator from './components/Comparator'
-import LazyList from './components/LazyList'
+import List from './components/List'
 import SearchBar from './components/SearchBar'
 
 const Characters = () => {
@@ -32,7 +32,7 @@ const Characters = () => {
         <Comparator />
       </Grid>
       <Grid item xs={12}>
-        <LazyList />
+        <List />
       </Grid>
     </Grid>
   )

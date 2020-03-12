@@ -22,7 +22,7 @@ const StyledGridListTile = styled(GridListTile)`
   margin-top: 10px;
 `
 
-const LazyList = () => {
+const List = () => {
   const dispatch = useDispatch()
   const characterListState = useSelector(
     (state: RootState) => state.characterListState
@@ -105,4 +105,4 @@ const CustomLoader = () => {
   )
 }
 
-export default LazyList
+export default List

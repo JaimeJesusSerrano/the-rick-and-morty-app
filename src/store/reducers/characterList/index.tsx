@@ -11,7 +11,7 @@ type Dictionary = { [index: number]: {} }
 
 interface CharacterListStateType {
   currentPage: number
-  errors: any
+  error: boolean
   loading: boolean
   name: string
   pages: Dictionary // TODO add specific type
@@ -20,7 +20,7 @@ interface CharacterListStateType {
 
 const initialState: CharacterListStateType = {
   currentPage: 0,
-  errors: null,
+  error: false,
   loading: false,
   name: '',
   pages: {},
@@ -28,11 +28,12 @@ const initialState: CharacterListStateType = {
 }
 
 interface ReduxActionType {
-  type: string
-  payload?: any
-  pages: {}
   currentPage: number
+  error?: boolean
   name: string
+  pages: {}
+  payload?: any
+  type: string
 }
 
 export const characterListReducer = (
@@ -42,8 +43,9 @@ export const characterListReducer = (
   switch (action.type) {
     case CHARACTER_LIST_FAILED:
       return {
-        ...state,
-        error: action.payload,
+        ...initialState,
+        error: action.error,
+        loading: false,
       }
     case CHARACTER_LIST_FETCH:
       return { ...state, loading: true }
@@ -66,9 +68,7 @@ export const characterListReducer = (
   }
 }
 
-export const getCharacterList = (
-  state: CharacterListStateType
-) => {
+export const getCharacterList = (state: CharacterListStateType) => {
   let characters: Character[] = []
   const emptyCharacterArray: Character[] = []
 

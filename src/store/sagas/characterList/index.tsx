@@ -3,6 +3,8 @@ import { ApiResponse, get } from '~Api'
 import {
   CHARACTER_LIST_SUCCEEDED,
   CHARACTER_LIST_FAILED,
+  CHARACTER_LIST_SEARCH,
+  CHARACTER_LIST_FETCH,
 } from '~Store/constants/characterList'
 
 interface PayloadType {
@@ -29,14 +31,14 @@ function* getCharacters({ payload }: GetCharactersArgs) {
       type: CHARACTER_LIST_SUCCEEDED,
     })
   } catch (e) {
-    yield put({ type: CHARACTER_LIST_FAILED, message: e.message })
+    yield put({ error: true, type: CHARACTER_LIST_FAILED })
   }
 }
 
 function* charactersSaga() {
   yield all([
-    takeLatest('CHARACTER_LIST_SEARCH', getCharacters),
-    takeLatest('CHARACTER_LIST_FETCH', getCharacters),
+    takeLatest(CHARACTER_LIST_SEARCH, getCharacters),
+    takeLatest(CHARACTER_LIST_FETCH, getCharacters),
   ])
 }
 

@@ -9,6 +9,8 @@ import { RootState } from '~Store/reducers'
 import { fetchCharactersPage } from '~Store/actions/characterList'
 import { getCharacterListUntilPage } from '~Store/reducers/characterList'
 
+import loader from '../../../assets/img/portal.gif'
+
 const Container = styled.div`
   margin-bottom: 50px;
 `
@@ -39,6 +41,7 @@ const LazyList = () => {
   if (!loading && totalPages === 0) {
     return (
       <Container>
+        <img src={loader} alt="loading..." />
         There are not characters with this name
       </Container>
     )

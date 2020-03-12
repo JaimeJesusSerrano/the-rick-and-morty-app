@@ -26,8 +26,8 @@ const LazyList = () => {
   const characterListState = useSelector(
     (state: RootState) => state.characterListState
   )
-  const { currentPage, info, name, pages } = characterListState
-  const result: Character[] = getCharacterListUntilPage(characterListState, currentPage)
+  const { currentPage, loading, name, totalPages } = characterListState
+  const characters: Character[] = getCharacterListUntilPage(characterListState, currentPage)
 
   const [hasMoreCharactersToLoad, setHasMoreCharactersToLoad] = useState(true)
 
@@ -35,9 +35,25 @@ const LazyList = () => {
     dispatch(fetchCharactersPage(currentPage + 1, name))
     // setHasMoreCharactersToLoad(false)
   }
+
+  if (!loading && totalPages === 0) {
+    return (
+      <Container>
+        There are not characters with this name
+      </Container>
+    )
+  }
+
+  if (!characters) {
+    return (
+      <Container>
+        Cargando...
+      </Container>
+    )
+  }
+
   const Items =
-    result &&
-    result.map((character: Character) => (
+    characters.map((character: Character) => (
       <StyledGridListTile
         key={character.id}
         cols={1}

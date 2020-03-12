@@ -16,8 +16,6 @@ interface GetCharactersArgs {
 function* getCharacters({ payload }: GetCharactersArgs) {
   try {
     const { page, name } = payload
-    console.log('getCharacters')
-    console.log(payload)
     const { data }: ApiResponse<'character', {}> = yield call(
       get,
       'character',

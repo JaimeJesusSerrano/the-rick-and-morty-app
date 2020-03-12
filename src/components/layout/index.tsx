@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Sidebar from '~Components/layout/Sidebar'
 import Breadcrumbs from './Breadcrumbs'
-import Footer from './footer'
+import { Footer } from './footer'
 import Menu from './menu'
 
 interface LayoutProps {
@@ -25,14 +25,14 @@ const ChildrenContainer = styled(Grid)`
   padding: 5px 15px 5px 15px;
 `
 
-const StyledFooter = styled(Grid)`
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  min-height: 100px;
-  padding: 5px 15px 5px 15px;
+const SBody = styled.body`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `
 
 const Layout = ({ children }: LayoutProps) => (
-  <>
+  <SBody>
     <Menu />
 
     <Container container direction="column">
@@ -51,11 +51,9 @@ const Layout = ({ children }: LayoutProps) => (
         <Grid item xs={1} />
       </ChildrenContainer>
 
-      <StyledFooter container>
         <Footer />
-      </StyledFooter>
     </Container>
-  </>
+  </SBody>
 )
 
 export default Layout

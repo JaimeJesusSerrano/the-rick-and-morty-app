@@ -4,6 +4,9 @@ import {
   CHARACTER_LIST_SUCCEEDED,
 } from '~Store/constants/characterList'
 
+import { Character } from '../../../services/api/types'
+
+
 type Dictionary = { [index: number]: {} }
 
 interface CharacterListStateType {
@@ -61,22 +64,37 @@ export const characterListReducer = (
   }
 }
 
+let numberState = 0
+
+const counter = (num: number = numberState) => {
+  numberState +=1
+  return numberState
+
+}
+let characters: Character[] = []
+
+
 export const getCharacterListUntilPage = (
   state: CharacterListStateType,
   page: number
 ) => {
-  const characters: [] = []
+
+  type Characters = Character[]
+  const emptyCharacterArray: Characters = []
 
   console.log('state.pages')
   console.log(state.pages)
-  Object.entries(state.pages).forEach(function (value, index) {
+  Object.entries(state.pages).map(([key, value]) =>{
     console.log('index')
-    console.log(index)
+    console.log(key)
     console.log(value)
-    if (index >= 1 && index <= page) {
-      // const newCharacters: [] = Object.values(value)
-      // characters = [...characters, ...newCharacters]
+    console.log(page)
+    if (Number(key) >= 1 && Number(key) <= page) {
+      console.log(counter(1))
+      const newCharacters: Character[] = value ? Object.values(value) : emptyCharacterArray
+      characters = [...characters, ...newCharacters]
     }
+    return characters
   })
 
   return characters

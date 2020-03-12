@@ -27,7 +27,7 @@ const LazyList = () => {
     (state: RootState) => state.characterListState
   )
   const { currentPage, info, name, pages } = characterListState
-  const result: [] = getCharacterListUntilPage(characterListState, currentPage)
+  const result: Character[] = getCharacterListUntilPage(characterListState, currentPage)
 
   const [hasMoreCharactersToLoad, setHasMoreCharactersToLoad] = useState(true)
 
@@ -35,7 +35,6 @@ const LazyList = () => {
     dispatch(fetchCharactersPage(currentPage + 1, name))
     // setHasMoreCharactersToLoad(false)
   }
-
   const Items =
     result &&
     result.map((character: Character) => (

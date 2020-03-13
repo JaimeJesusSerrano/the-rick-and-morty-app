@@ -13,6 +13,7 @@ interface CardProps {
 
 const StyledCard = styled(MaterialUiCard)`
   border-radius: 20px;
+  line-height: 0;
 `
 
 const StyledCardContent = styled(CardContent)`

@@ -33,14 +33,11 @@ const List = () => {
   const [hasMoreCharactersToLoad, setHasMoreCharactersToLoad] = useState(true)
 
   const loadMoreCharacters = () => {
-    // TODO check call single time
-    console.log('loadMoreCharacters!')
     const newPage = currentPage + 1
-    if (!loading) {
-      dispatch(fetchCharactersPage(newPage, name))
-    }
-    if (newPage === totalPages) {
+    if (newPage > totalPages) {
       setHasMoreCharactersToLoad(false)
+    } else if (!loading && hasMoreCharactersToLoad) {
+      dispatch(fetchCharactersPage(newPage, name))
     }
   }
 
@@ -57,7 +54,6 @@ const List = () => {
         </StyledGridListTile>
       ))
 
-    // TODO check key for each item
     return (
       <Container>
         <InfiniteScroll

@@ -1,7 +1,8 @@
 import { fade, Grid, InputBase } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import useDebounce from '~Hooks/useDebounce'
 
 const SearchContainer = styled(Grid)`
   margin-top: 15px;
@@ -14,10 +15,18 @@ const SearchContainer = styled(Grid)`
 `
 
 interface SearchBarProps {
-  element: string
   handleChange: (value: string) => void
 }
-const SearchBar = ({ element, handleChange }: SearchBarProps) => {
+const SearchBar = ({ handleChange }: SearchBarProps) => {
+  const [searchValue, setSearchValue] = useState('')
+  const debouncedSearchValue = useDebounce(searchValue, 500)
+
+  const onChange = (value: string) => setSearchValue(value)
+
+  useEffect(() => {
+    handleChange(debouncedSearchValue)
+  }, [debouncedSearchValue, handleChange])
+
   return (
     <SearchContainer container justify="space-around" alignItems="center">
       <Grid container item xs={1} direction="column" alignItems="center">
@@ -27,8 +36,8 @@ const SearchBar = ({ element, handleChange }: SearchBarProps) => {
         <InputBase
           fullWidth
           placeholder="Search a character"
-          value={element}
-          onChange={e => handleChange(e.target.value)}
+          value={searchValue}
+          onChange={e => onChange(e.target.value)}
           inputProps={{ 'aria-label': 'search' }}
         />
       </Grid>

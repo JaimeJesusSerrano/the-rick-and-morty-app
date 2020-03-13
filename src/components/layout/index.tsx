@@ -25,14 +25,14 @@ const ChildrenContainer = styled(Grid)`
   padding: 5px 15px 5px 15px;
 `
 
-const SBody = styled.body`
+const SContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 `
 
 const Layout = ({ children }: LayoutProps) => (
-  <SBody>
+  <SContainer>
     <Menu />
 
     <Container container direction="column">
@@ -41,11 +41,12 @@ const Layout = ({ children }: LayoutProps) => (
       </GridBreadcrumb>
 
       <ChildrenContainer container>
+        <Grid item xs={1} />
         <Grid item xs={7}>
           {children}
         </Grid>
         <Grid item xs={1} />
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Sidebar />
         </Grid>
         <Grid item xs={1} />
@@ -53,7 +54,7 @@ const Layout = ({ children }: LayoutProps) => (
 
         <Footer />
     </Container>
-  </SBody>
+  </SContainer>
 )
 
 export default Layout

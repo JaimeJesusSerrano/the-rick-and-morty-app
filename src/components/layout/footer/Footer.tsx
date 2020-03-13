@@ -19,7 +19,7 @@ const Copyright = (): JSX.Element => {
         color="inherit"
         href="https://github.com/JaimeJesusSerrano/the-rick-and-morty-app"
       >
-        Yikes!
+        -
       </Link>
       {getDate()}
       {}

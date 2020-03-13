@@ -5,15 +5,19 @@ import {
   ThemeProvider as MuiThemeProvider,
 } from '@material-ui/core/styles'
 import React from 'react'
+import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import Layout from '~Components/layout'
+import { configureStore } from '~Store/config'
 import Router from './routes'
 import theme from './theme'
 
+const store = configureStore()
+
 const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <CssBaseline />
       <NoSsr>
         <StylesProvider injectFirst>
@@ -30,7 +34,7 @@ const App = () => {
           </MuiThemeProvider>
         </StylesProvider>
       </NoSsr>
-    </>
+    </Provider>
   )
 }
 

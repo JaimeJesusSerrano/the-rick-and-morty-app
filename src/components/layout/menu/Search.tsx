@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const SearchBar = styled.div`
   position: relative;
-  border-radius: ${({ theme }) => theme.shape.borderRadius};
+  border-radius: ${({ theme }) => theme.shape.borderRadius}px;
   background-color: ${({ theme }) => fade(theme.palette.common.white, 0.15)};
   &:hover {
     background-color: ${({ theme }) => fade(theme.palette.common.white, 0.25)};

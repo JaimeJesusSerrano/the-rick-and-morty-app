@@ -9,8 +9,10 @@
           "~Api": "./src/services/api",
           "~Assets": "./src/assets",
           "~Components": "./src/components",
+          "~Hooks": "./src/hooks",
           "~Routes": "./src/routes",
           "~Screens": "./src/screens",
+          "~Store": "./src/store",
           "~Theme": "./src/theme",
           "~Utils": "./src/utils"
         }

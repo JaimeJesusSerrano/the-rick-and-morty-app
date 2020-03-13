@@ -1,4 +1,4 @@
-import axios, { AxiosPromise } from 'axios'
+import axios, { AxiosPromise, AxiosResponse } from 'axios'
 import {
   Character,
   CharacterFilters,
@@ -9,38 +9,49 @@ import {
   ResultsInfo,
 } from './types'
 
-export const client = axios.create({
+const client = axios.create({
   baseURL: 'https://rickandmortyapi.com/api/',
   timeout: 5000,
   method: 'get',
 })
 
-type Filter<T> = T extends Character
+type MapEndpointToEntity<E> = E extends 'character'
+  ? Character
+  : E extends 'location'
+  ? Location
+  : Episode
+
+type Filter<E> = E extends 'character'
   ? CharacterFilters
-  : T extends Location
+  : E extends 'location'
   ? LocationFilters
   : EpisodeFilters
 
-type GETReturn<E extends Character | Location | Episode> = {
-  (params: string | number): AxiosPromise<E>
-  (params: string[] | number[]): AxiosPromise<E[]>
-  (params?: Filter<E>): AxiosPromise<ResultsInfo<E>>
-}
 type Endpoint = 'character' | 'location' | 'episode'
-type CommonArgs<T> = string | number | string[] | number[] | T | undefined
-const get = (endpoint: Endpoint, args?: CommonArgs<{}>) =>
+
+type Params<E extends Endpoint> =
+  | string
+  | number
+  | string[]
+  | number[]
+  | Filter<E>
+  | undefined
+
+type GetResponse<E extends Endpoint, A> = A extends string | number
+  ? MapEndpointToEntity<E>
+  : A extends string[] | number[]
+  ? MapEndpointToEntity<E>[]
+  : ResultsInfo<MapEndpointToEntity<E>>
+
+export type ApiResponse<
+  E extends Endpoint,
+  A extends Params<E>
+> = AxiosResponse<GetResponse<E, A>>
+
+export const get = <E extends Endpoint, A extends Params<E>>(
+  endpoint: E,
+  args: A
+): AxiosPromise<GetResponse<E, A>> =>
   typeof args === 'number' || typeof args === 'string' || Array.isArray(args)
     ? client(`${endpoint}/${args}`)
     : client(endpoint, { params: args })
-
-export const getCharacter: GETReturn<Character> = (
-  args?: CommonArgs<CharacterFilters>
-) => get('character', args)
-
-export const getLocation: GETReturn<Location> = (
-  args?: CommonArgs<LocationFilters>
-) => get('location', args)
-
-export const getEpisode: GETReturn<Episode> = (
-  args?: CommonArgs<EpisodeFilters>
-) => get('episode', args)

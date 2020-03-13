@@ -1,5 +1,5 @@
 import { IconButton, Link } from '@material-ui/core'
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { ReactComponent as MortyIcon } from '~Assets/img/morty.svg'
@@ -16,19 +16,18 @@ const Logo = () => {
   const [mortyOpacity, setMortyOpacity] = useState(0.0)
 
   const useInterval = (callback: () => void, delay: number) => {
-    const savedCallback = useRef<any>()
+    const savedCallback = useRef<() => void>()
 
-    // Remember the latest function.
     useEffect(() => {
       savedCallback.current = callback
     }, [callback])
 
-    // Set up the interval.
     useEffect(() => {
       function tick() {
-        savedCallback.current()
+        if (savedCallback.current) {
+          savedCallback.current()
+        }
       }
-
       const id = setInterval(tick, delay)
       return () => clearInterval(id)
     }, [delay])

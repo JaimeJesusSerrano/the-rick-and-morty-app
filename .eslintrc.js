@@ -2,12 +2,14 @@ module.exports = {
   extends: [
     'airbnb-typescript',
     'airbnb/hooks',
+    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    'prettier/@typescript-eslint',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react/recommended',
     'prettier',
-    'prettier/react',
     'prettier/@typescript-eslint',
+    'prettier/@typescript-eslint',
+    'prettier/react',
   ],
   plugins: ['@typescript-eslint', 'react-hooks', 'prettier'],
   parserOptions: {
@@ -26,7 +28,7 @@ module.exports = {
       version: 'detect',
     },
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
     },
     'import/resolver': {
       typescript: {
@@ -34,7 +36,7 @@ module.exports = {
         directory: './tsconfig.json',
       },
       node: {
-        extensions: ['.js', '.ts', '.tsx', '.jsx'],
+        extensions: ['.js', '.ts', '.tsx', '.jsx', '.d.ts'],
       },
     },
   },

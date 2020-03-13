@@ -1,22 +1,19 @@
-import Characters from '~Screens/Characters'
+import { RouteProps } from 'react-router-dom'
+import Characters from '~Screens/characters'
 import Episodes from '~Screens/Episodes'
 import Home from '~Screens/Home'
 import Locations from '~Screens/Locations'
 
-export interface RouteType {
-  component: React.ReactNode
+export interface RouteType extends RouteProps {
   name: string
   path: string
 }
 
-interface RoutesType {
-  baseUrl: RouteType
-  characters: RouteType
-  episodes: RouteType
-  locations: RouteType
-}
+const createRoutes = <T extends object>(
+  item: Record<keyof T, RouteType>
+): Record<keyof T, RouteType> => item
 
-const routes: RoutesType = {
+const routes = createRoutes({
   baseUrl: {
     component: Home,
     name: 'Home',
@@ -37,6 +34,6 @@ const routes: RoutesType = {
     name: 'Locations',
     path: '/locations',
   },
-}
+})
 
 export default routes

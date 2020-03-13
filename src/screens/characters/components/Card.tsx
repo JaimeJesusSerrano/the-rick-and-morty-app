@@ -39,6 +39,7 @@ const Card = ({
         width={200}
       />
       <StyledCardContent>
+        <CardContentItem title="NAME" value={name} />
         <CardContentItem title="STATUS" value={status} />
         <CardContentItem title="SPICES" value={species} />
         <CardContentItem title="GENDER" value={gender} />

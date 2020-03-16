@@ -1,3 +1,5 @@
+import { Action } from "redux";
+
 export enum ActionType {
   LOCATION_LIST_FAILED,
   LOCATION_LIST_FETCH,
@@ -24,4 +26,8 @@ export interface LocationListActionType {
   pages: {}
   payload?: any
   type: string
+}
+
+export interface DispatchAction extends Action<ActionType> {
+  payload: LocationListActionType;
 }

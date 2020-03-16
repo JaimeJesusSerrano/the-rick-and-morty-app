@@ -1,4 +1,4 @@
-import { ActionType, LocationListStateType, LocationListActionType } from '~Store/constants/locationList'
+import { ActionType, DispatchAction, LocationListStateType } from '~Store/constants/locationList'
 import { Action } from 'redux'
 
 const initialState: LocationListStateType = {
@@ -8,10 +8,6 @@ const initialState: LocationListStateType = {
   name: '',
   pages: {},
   totalPages: 0,
-}
-
-export interface DispatchAction extends Action<ActionType> {
-  payload: LocationListActionType;
 }
 
 export const locationListReducer = (

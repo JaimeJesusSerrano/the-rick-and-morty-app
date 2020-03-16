@@ -1,4 +1,5 @@
 import { ActionType, DispatchAction, LocationListStateType, LocationListActionType } from '~Store/constants/locationList'
+import { Location } from '~Api/types'
 
 const initialState: LocationListStateType = {
   currentPage: 0,
@@ -40,4 +41,22 @@ export const locationListReducer = (
     default:
       return initialState
   }
+}
+
+// Ask Alexis: Esto va aquí?
+export const getLocationList = (state: LocationListStateType) => {
+  let locations: Location[] = []
+  const emptyLocationArray: Location[] = []
+
+  Object.entries(state.pages).map(([key, value]) => {
+    if (Number(key) >= 1 && Number(key)) {
+      const newLocations: Location[] = value
+        ? Object.values(value)
+        : emptyLocationArray
+      locations = [...locations, ...newLocations]
+    }
+    return locations
+  })
+
+  return locations
 }

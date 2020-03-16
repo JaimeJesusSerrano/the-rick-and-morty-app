@@ -20,12 +20,13 @@ export interface LocationListStateType {
 }
 
 export interface LocationListActionType {
-  currentPage: number
+  currentPage?: number
   error?: boolean
   name: string
-  pages: {}
+  page: number
+  pages?: {}
   payload?: any
-  type: string
+  type?: string
 }
 
 export interface DispatchAction extends Action<ActionType> {

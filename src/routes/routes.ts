@@ -2,7 +2,7 @@ import { RouteProps } from 'react-router-dom'
 import Characters from '~Screens/characters'
 import Episodes from '~Screens/Episodes'
 import Home from '~Screens/Home'
-import Locations from '~Screens/Locations'
+import Locations from '~Screens/locations'
 
 export interface RouteType extends RouteProps {
   name: string

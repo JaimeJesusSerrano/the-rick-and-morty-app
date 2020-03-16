@@ -1,4 +1,4 @@
-import { ActionType, DispatchAction, LocationListStateType } from '~Store/constants/locationList'
+import { ActionType, DispatchAction, LocationListStateType, LocationListActionType } from '~Store/constants/locationList'
 
 const initialState: LocationListStateType = {
   currentPage: 0,
@@ -11,7 +11,7 @@ const initialState: LocationListStateType = {
 
 export const locationListReducer = (
   state: LocationListStateType = initialState,
-  action: DispatchAction
+  action: LocationListActionType
 ): LocationListStateType => {
   const { type, payload } = action
   switch (type) {
@@ -28,14 +28,14 @@ export const locationListReducer = (
     case ActionType.LOCATION_LIST_SUCCEEDED: 
         return {
           ...state,
-          currentPage: payload.currentPage,
+          currentPage: action.currentPage,
           loading: false,
-          name: payload.name,
+          name: action.name,
           pages: {
             ...state.pages,
-            [payload.currentPage as number]: payload.payload.results
+            [action.currentPage as number]: payload.results
           },
-          totalPages: payload.payload.info.pages
+          totalPages: payload.info.pages
         }
     default:
       return initialState

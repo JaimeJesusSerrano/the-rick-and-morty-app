@@ -1,7 +1,8 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from '~Store/reducers'
-import charactersSaga from '~Store/sagas/characterList'
+// import charactersSaga from '~Store/sagas/characterList'
+import rootSaga from '~Store/sagas/index'
 
 declare global {
   interface Window {
@@ -18,7 +19,6 @@ export const configureStore = () => {
     composeEnhancers(applyMiddleware(sagaMiddleware))
   )
 
-  sagaMiddleware.run(charactersSaga)
-  // TODO root saga
+  sagaMiddleware.run(rootSaga)
   return store
 }

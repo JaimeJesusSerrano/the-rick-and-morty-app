@@ -1,5 +1,4 @@
 import { ActionType, DispatchAction, LocationListStateType } from '~Store/constants/locationList'
-import { Action } from 'redux'
 
 const initialState: LocationListStateType = {
   currentPage: 0,
@@ -34,7 +33,7 @@ export const locationListReducer = (
           name: payload.name,
           pages: {
             ...state.pages,
-            [payload.currentPage]: payload.payload.results
+            [payload.currentPage as number]: payload.payload.results
           },
           totalPages: payload.payload.info.pages
         }

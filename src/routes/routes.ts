@@ -3,7 +3,7 @@ import Characters from '~Screens/characters'
 // /import/no-unresolved
 import Episodes from '~Screens/episodes'
 import Home from '~Screens/Home'
-import Locations from '~Screens/Locations'
+import Locations from '~Screens/locations'
 
 export interface RouteType extends RouteProps {
   name: string

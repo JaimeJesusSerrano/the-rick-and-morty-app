@@ -23,4 +23,12 @@ const ExpansionPanelComparator = (): JSX.Element => {
   )
 }
 
+const SExpansionPanelComparator = styled(ExpansionPanelComparator)`
+  background-color: ${({ theme }) => theme.palette.secondary.main};
+`
+const SBackdrop = styled(Backdrop)`
+  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
+  color: #ffff;
+`
+
 export default ExpansionPanelComparator

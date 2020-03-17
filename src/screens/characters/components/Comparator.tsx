@@ -1,8 +1,8 @@
 import React from 'react'
-import ExpansionPanel from '~Screens/characters/components/ExpansionPanel'
+import SExpansionPanel from '~Screens/characters/components/ExpansionPanel'
 
 const Comparator = () => {
-  return <ExpansionPanel/>
+  return <SExpansionPanel/>
 }
 
 export default Comparator

@@ -5,8 +5,21 @@ import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { ExpansionPanelDetails, ExpansionPanelActions } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import styled from 'styled-components'
+import Divider from '@material-ui/core/Divider'
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const ExpansionPanelComparator = (): JSX.Element => {
+  const [open, setOpen] = React.useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleToggle = () => {
+    setOpen(!open)
+  }
+
   return (
     <ExpansionPanel>
       <ExpansionPanelSummary
@@ -24,6 +37,23 @@ const ExpansionPanelComparator = (): JSX.Element => {
           <Typography> Character two</Typography>
         </div>
       </ExpansionPanelDetails>
+      <Divider />
+      <ExpansionPanelActions>
+        <Button size="small" variant="outlined">
+          Cancel
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          variant="outlined"
+          onClick={handleToggle}
+        >
+          Compare
+        </Button>
+        <SBackdrop open={open} onClick={handleClose}>
+          <CircularProgress color="inherit" />
+        </SBackdrop>
+      </ExpansionPanelActions>
     </ExpansionPanel>
   )
 }

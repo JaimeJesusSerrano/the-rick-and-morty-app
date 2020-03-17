@@ -2,6 +2,7 @@ import { Grid } from '@material-ui/core'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as Title } from '~Assets/img/locations_title.svg'
+import List from './components/List'
 import SearchBar from './components/SearchBar'
 import { LocationListDispatcher } from '~Store/actions/locationList'
 
@@ -19,6 +20,9 @@ const Locations = () => {
         <SearchBar
           handleChange={debouncedSearchValue => locationDispatcher.fetchLocationsSearch(1, debouncedSearchValue)}
         />
+      </Grid>
+      <Grid item xs={12}>
+        <List />
       </Grid>
     </Grid>
   )

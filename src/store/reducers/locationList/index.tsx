@@ -19,7 +19,7 @@ export const locationListReducer = (
     case ActionType.LOCATION_LIST_FAILED:
       return {
         ...initialState,
-        error: payload.error,
+        error: action.error,
         loading: false
       }
     case ActionType.LOCATION_LIST_FETCH:

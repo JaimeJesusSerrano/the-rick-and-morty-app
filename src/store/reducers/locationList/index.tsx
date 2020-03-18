@@ -1,4 +1,4 @@
-import { ActionType, DispatchAction, LocationListStateType, LocationListActionType } from '~Store/constants/locationList'
+import { ActionType, DispatchAction, LocationListStateType, LocationListActionType } from '~Store/constants/location/LocationList'
 import { Location } from '~Api/types'
 
 const initialState: LocationListStateType = {

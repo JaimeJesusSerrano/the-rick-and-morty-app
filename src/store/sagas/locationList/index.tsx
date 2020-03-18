@@ -1,5 +1,5 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import { ActionType, DispatchAction } from "~Store/constants/locationList";
+import { ActionType, DispatchAction } from "~Store/constants/location/LocationList";
 import { ApiResponse, get } from '~Api';
 
 function* getLocations({ payload }: DispatchAction) {

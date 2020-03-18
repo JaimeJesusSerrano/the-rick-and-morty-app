@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { ActionType, DispatchAction } from '~Store/constants/locationList'
+import { ActionType, DispatchAction } from '~Store/constants/location/LocationList'
 
 export class LocationListDispatcher {
   private readonly dispatch: Dispatch<DispatchAction>;

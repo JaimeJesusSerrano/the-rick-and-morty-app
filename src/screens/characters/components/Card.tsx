@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Card as MaterialUiCard,
   CardContent,
@@ -55,14 +55,28 @@ const getCardInformation = (
 const Card = ({
   character: { gender, image, location, name, origin, species, status },
 }: CardProps) => {
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <StyledCard>
-      <CardActions>
-        <Button size="small" color="primary">
-          Selected
-        </Button>
-      </CardActions>
-      <CardActionArea onClick={() => console.log(`Selected: ${getCardInformation(name, gender, species, status)}`)}>
+      {isVisible ? (
+        <CardActions>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              console.log(`send to comparator: ${name}`)
+            }}
+          >
+            Send to comparator
+          </Button>
+        </CardActions>
+      ) : null}
+      <CardActionArea
+        onClick={() => {
+          setIsVisible(!isVisible)
+          console.log(getCardInformation(name, gender, species, status))
+        }}
+      >
         <CardMedia>
           <LazyLoadImage
             alt={name}

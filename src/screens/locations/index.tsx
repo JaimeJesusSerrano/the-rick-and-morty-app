@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { ReactComponent as Title } from '~Assets/img/locations_title.svg'
 import List from './components/List'
 import SearchBar from './components/SearchBar'
-import { LocationListDispatcher } from '~Store/actions/locationList'
+import { LocationListDispatcher } from '~Store/actions/location/LocationList'
 
 const Locations = () => {
 

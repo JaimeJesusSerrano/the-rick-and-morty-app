@@ -28,7 +28,7 @@ const List = () => {
   const locationDispatcher = new LocationListDispatcher(dispatch)
 
   const locationListState = useSelector(
-    (state: RootState) => state.locationListState
+    (state: RootState) => state.location.list
   )
 
   const { currentPage, loading, name, totalPages } = locationListState

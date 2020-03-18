@@ -1,4 +1,4 @@
-import { ActionType, DispatchAction, LocationListStateType, LocationListActionType } from '~Store/constants/location/LocationList'
+import { ActionType, LocationListStateType, LocationListActionType } from '~Store/constants/location/LocationList'
 import { Location } from '~Api/types'
 
 const initialState: LocationListStateType = {
@@ -11,7 +11,7 @@ const initialState: LocationListStateType = {
 }
 
 export const locationListReducer = (
-  state: LocationListStateType = initialState,
+  state = initialState,
   action: LocationListActionType
 ): LocationListStateType => {
   const { type, payload } = action
@@ -39,11 +39,10 @@ export const locationListReducer = (
           totalPages: payload.info.pages
         }
     default:
-      return initialState
+       return initialState
   }
 }
 
-// Ask Alexis: Esto va aquí?
 export const getLocationList = (state: LocationListStateType) => {
   let locations: Location[] = []
   const emptyLocationArray: Location[] = []

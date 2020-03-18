@@ -31,6 +31,27 @@ const StyledCardContent = styled(CardContent)`
   padding: 10px;
 `
 
+type CharacterComparableInfo = {
+  name: string
+  gender: string
+  species: string
+  status: string
+}
+
+const getCardInformation = (
+  gender: string,
+  name: string,
+  species: string,
+  status: string,
+): CharacterComparableInfo => {
+  return {
+    name,
+    gender,
+    species,
+    status,
+  }
+}
+
 const Card = ({
   character: { gender, image, location, name, origin, species, status },
 }: CardProps) => {
@@ -41,9 +62,7 @@ const Card = ({
           Selected
         </Button>
       </CardActions>
-      <CardActionArea
-        onClick={()=>(console.log(`Selected: ${name}`))}
-      >
+      <CardActionArea onClick={() => console.log(`Selected: ${getCardInformation(name, gender, species, status)}`)}>
         <CardMedia>
           <LazyLoadImage
             alt={name}

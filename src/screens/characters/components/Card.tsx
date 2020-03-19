@@ -43,12 +43,14 @@ const getCardInformation = (
   name: string,
   species: string,
   status: string,
+  image: string,
 ): CharacterComparableInfo => {
   return {
     name,
     gender,
     species,
     status,
+    image,
   }
 }
 
@@ -74,7 +76,7 @@ const Card = ({
       <CardActionArea
         onClick={() => {
           setIsVisible(!isVisible)
-          console.log(getCardInformation(name, gender, species, status))
+          console.log(getCardInformation(name, gender, species, status, image))
         }}
       >
         <CardMedia>

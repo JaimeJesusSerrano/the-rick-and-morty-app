@@ -1,4 +1,3 @@
-import React from 'react'
 import { combineReducers } from "redux";
 import { locationListReducer } from "./LocationList";
 import { LocationListStateType } from '~Store/constants/location/LocationList'

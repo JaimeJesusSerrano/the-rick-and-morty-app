@@ -65,7 +65,7 @@ const List = () => {
           loadMore={loadMoreLocations}
           hasMore={hasMoreLocationsToLoad}
           loader={
-            <CustomLoader />
+            <CustomLoader key={0}/>
           }
         >
           <StyledGridList cellHeight="auto" spacing={4}>

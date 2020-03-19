@@ -14,7 +14,7 @@ export const locationListReducer = (
   state = initialState,
   action: LocationListActionType
 ): LocationListStateType => {
-  const { type, payload } = action
+  const { type, payload, currentPage, name } = action
   switch (type) {
     case ActionType.LOCATION_LIST_FAILED:
       return {
@@ -29,12 +29,12 @@ export const locationListReducer = (
     case ActionType.LOCATION_LIST_SUCCEEDED: 
         return {
           ...state,
-          currentPage: action.currentPage,
+          currentPage,
           loading: false,
-          name: action.name,
+          name,
           pages: {
             ...state.pages,
-            [action.currentPage as number]: payload.results
+            [currentPage as number]: payload.results
           },
           totalPages: payload.info.pages
         }

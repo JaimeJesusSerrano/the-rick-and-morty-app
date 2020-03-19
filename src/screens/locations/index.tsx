@@ -18,7 +18,7 @@ const Locations = () => {
       </Grid>
       <Grid item xs={12}>
         <SearchBar
-          handleChange={debouncedSearchValue => locationDispatcher.fetchLocationsSearch(1, debouncedSearchValue)}
+          handleChange={debouncedSearchValue => locationDispatcher.fetchLocationsSearch(debouncedSearchValue)}
         />
       </Grid>
       <Grid item xs={12}>

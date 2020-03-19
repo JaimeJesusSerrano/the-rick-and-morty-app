@@ -3,8 +3,8 @@ import { ActionType, DispatchAction } from "~Store/constants/location/LocationLi
 import { ApiResponse, get } from '~Api';
 
 function* getLocations({ payload }: DispatchAction) {
+  const { page: currentPage, name } = payload
   try {
-    const { page, name } = payload
     const { data }: ApiResponse<'location', {}> = yield call(
       get,
       'location',
@@ -12,9 +12,7 @@ function* getLocations({ payload }: DispatchAction) {
     )
 
     yield put({
-      currentPage: page,
-      name,
-      payload: data,
+      payload: data, currentPage, name,
       type: ActionType.LOCATION_LIST_SUCCEEDED
     })
 

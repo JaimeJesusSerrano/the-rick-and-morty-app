@@ -31,11 +31,12 @@ const StyledCardContent = styled(CardContent)`
   padding: 10px;
 `
 
-type CharacterComparableInfo = {
+export type CharacterComparableInfo = {
   name: string
   gender: string
   species: string
   status: string
+  image: string
 }
 
 const getCardInformation = (

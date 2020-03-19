@@ -3,14 +3,14 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { ExpansionPanelDetails, ExpansionPanelActions, CardMedia, CardActionArea } from '@material-ui/core'
+import { ExpansionPanelDetails, ExpansionPanelActions} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import Divider from '@material-ui/core/Divider'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import UnknownIcon from '~Assets/img/unknown.jpeg'
+
+import CharactersLocker from '~Screens/characters/components/CharactersLocker'
 
 const ExpansionPanelComparator = (): JSX.Element => {
   const [open, setOpen] = React.useState(false)
@@ -33,29 +33,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
       </ExpansionPanelSummary>
       <Divider />
       <ExpansionPanelDetails>
-        <CardMedia>
-          <LazyLoadImage
-            alt="char"
-            effect="blur"
-            height={200}
-            placeholderSrc={UnknownIcon}
-            src="image"
-            threshold={500}
-            width={200}
-          />
-        </CardMedia>
-
-        <CardMedia>
-          <LazyLoadImage
-            alt="char"
-            effect="blur"
-            height={200}
-            placeholderSrc={UnknownIcon}
-            src="image"
-            threshold={500}
-            width={200}
-          />
-        </CardMedia>
+        <CharactersLocker/>
       </ExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions>

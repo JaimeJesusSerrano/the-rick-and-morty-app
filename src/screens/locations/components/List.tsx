@@ -9,6 +9,7 @@ import { RootState } from '~Store/reducers'
 import Loader from '~Components/Loader'
 import { Location } from '~Api/types'
 import Card from './Card'
+import NoResponseImg from '~Assets/img/noresponse.jpg'
 
 const Container = styled.div`
 margin-bottom: 50px;
@@ -30,8 +31,7 @@ const List = () => {
   const locationListState = useSelector(
     (state: RootState) => state.location.list
   )
-
-  const { currentPage, loading, name, totalPages } = locationListState
+  const { currentPage, loading, name, totalPages, criticalError } = locationListState
   const locations: Location[] = getLocationList(locationListState)
 
   const [hasMoreLocationsToLoad, setHasMoreLocationsToLoad] = useState(true)
@@ -76,10 +76,18 @@ const List = () => {
     )
   }
 
-  if (!loading && totalPages === 0) {
+  if (!loading && !criticalError && totalPages === 0) {
     return (
       <Container>
         There are not locations with this name
+      </Container>
+    )
+  }
+
+  if (!loading && criticalError && totalPages === 0) {
+    return (
+      <Container>
+        <img src={NoResponseImg} alt="No Response from Server" style={{width: '100%', marginTop: 10}}/>
       </Container>
     )
   }

@@ -4,6 +4,7 @@ import { Location } from '~Api/types'
 const initialState: LocationListStateType = {
   currentPage: 0,
   error: false,
+  criticalError: false,
   loading: false,
   name: '',
   pages: {},
@@ -22,6 +23,12 @@ export const locationListReducer = (
         error: action.error,
         loading: false
       }
+    case ActionType.LOCATION_LIST_CONNECTION_FAILED:
+        return {
+          ...initialState,
+          criticalError: action.criticalError,
+          loading: false
+        }
     case ActionType.LOCATION_LIST_FETCH:
         return { ...state, loading: true }
     case ActionType.LOCATION_LIST_SEARCH:

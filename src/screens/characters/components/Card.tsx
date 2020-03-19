@@ -68,6 +68,8 @@ const Card = ({
             color="primary"
             onClick={() => {
               console.log(`send to comparator: ${name}`)
+              console.log(getCardInformation(name, gender, species, status, image))
+
             }}
           >
             Send to comparator
@@ -77,7 +79,6 @@ const Card = ({
       <CardActionArea
         onClick={() => {
           setIsVisible(!isVisible)
-          console.log(getCardInformation(name, gender, species, status, image))
         }}
       >
         <CardMedia>

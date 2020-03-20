@@ -39,12 +39,13 @@ export type CharacterComparableInfo = {
   image: string
 }
 
+// redux
 const getCardInformation = (
   gender: string,
   name: string,
   species: string,
   status: string,
-  image: string,
+  image: string
 ): CharacterComparableInfo => {
   return {
     name,
@@ -58,27 +59,33 @@ const getCardInformation = (
 const Card = ({
   character: { gender, image, location, name, origin, species, status },
 }: CardProps) => {
-  const [isVisible, setIsVisible] = useState(false)
-  return (
-    <StyledCard>
-      {isVisible ? (
+  //redux
+  const [isSelected, setIsSelected] = useState(false)
+  const CardComparatorSelector = (): JSX.Element => {
+      return (
         <CardActions>
           <Button
             size="small"
             color="primary"
             onClick={() => {
               console.log(`send to comparator: ${name}`)
-              console.log(getCardInformation(name, gender, species, status, image))
-
+              console.log(
+                getCardInformation(name, gender, species, status, image)
+              )
             }}
           >
             Send to comparator
           </Button>
         </CardActions>
-      ) : null}
+      )
+    }
+
+  return (
+    <StyledCard>
+      {isSelected && CardComparatorSelector()}
       <CardActionArea
         onClick={() => {
-          setIsVisible(!isVisible)
+          setIsSelected(!isSelected)
         }}
       >
         <CardMedia>

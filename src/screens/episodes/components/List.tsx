@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Card from './Card'
 import { Episode } from '../../../services/api/types'
 import { RootState } from '~Store/reducers'
-import { fetchEpisodesPage } from '~Store/actions/episodeList'
+import { fetchEpisodesPage } from '~Store/actions/episode/EpisodeList'
 import { getEpisodeList } from '~Store/reducers/episodeList'
 import Loader from '~Components/Loader'
 

@@ -6,9 +6,9 @@ import {
 } from '~Store/constants/location/LocationList'
 
 const initialState: LocationListStateType = {
+  criticalError: false,
   currentPage: 0,
   error: false,
-  criticalError: false,
   loading: false,
   name: '',
   pages: {},

@@ -1,67 +1,49 @@
-import {
-  EPISODE_LIST_FAILED,
-  EPISODE_LIST_FETCH,
-  EPISODE_LIST_SEARCH,
-  EPISODE_LIST_SUCCEEDED,
-} from '~Store/constants/episode/EpisodeList'
-
-import { Episode } from '../../../services/api/types'
-
-type Dictionary = { [index: number]: {} }
-
-interface EpisodeListStateType {
-  currentPage: number
-  error: boolean
-  loading: boolean
-  name: string
-  pages: Dictionary // TODO add specific type
-  totalPages: number
-}
+import { Episode } from '~Api/types'
+import { ActionType, EpisodeListActionType, EpisodeListStateType } from '~Store/constants/episode/EpisodeList'
 
 const initialState: EpisodeListStateType = {
   currentPage: 0,
   error: false,
+  criticalError: false,
   loading: false,
   name: '',
   pages: {},
   totalPages: 0,
 }
 
-interface ReduxActionType {
-  currentPage: number
-  error?: boolean
-  name: string
-  pages: {}
-  payload?: any
-  type: string
-}
-
 export const episodeListReducer = (
-  state: EpisodeListStateType = initialState,
-  action: ReduxActionType
-) => {
-  switch (action.type) {
-    case EPISODE_LIST_FAILED:
+  state = initialState,
+  action: EpisodeListActionType
+): EpisodeListStateType => {
+  const { type, payload, currentPage, name } = action
+  switch (type) {
+    case ActionType.EPISODE_LIST_FAILED:
       return {
         ...initialState,
         error: action.error,
         loading: false,
       }
-    case EPISODE_LIST_FETCH:
+    case ActionType.EPISODE_LIST_CONNECTION_FAILED:
+      return {
+        ...initialState,
+        criticalError: action.criticalError,
+        loading: false,
+      }
+    case ActionType.EPISODE_LIST_FETCH:
       return { ...state, loading: true }
-    case EPISODE_LIST_SEARCH:
+    case ActionType.EPISODE_LIST_SEARCH:
       return { ...initialState, loading: true }
-    case EPISODE_LIST_SUCCEEDED:
+    case ActionType.EPISODE_LIST_SUCCEEDED:
       return {
         ...state,
-        currentPage: action.currentPage,
+        currentPage,
         loading: false,
-        name: action.name,
+        name,
         pages: {
           ...state.pages,
-          [action.currentPage]: action.payload.results,
+          [currentPage as number]: payload.results,
         },
-        totalPages: action.payload.info.pages,
+        totalPages: payload.info.pages,
       }
     default:
       return initialState

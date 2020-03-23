@@ -7,7 +7,7 @@ import Card from './Card'
 import { Episode } from '../../../services/api/types'
 import { RootState } from '~Store/reducers'
 import { fetchEpisodesPage } from '~Store/actions/episode/EpisodeList'
-import { getEpisodeList } from '~Store/reducers/episodeList'
+import { getEpisodeList } from '~Store/reducers/episode/EpisodeList'
 import Loader from '~Components/Loader'
 
 const Container = styled.div`

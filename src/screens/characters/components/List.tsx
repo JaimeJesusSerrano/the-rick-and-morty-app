@@ -1,12 +1,13 @@
-import {Grid, GridList, GridListTile} from '@material-ui/core'
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import {Grid, GridList, GridListTile} from '@material-ui/core'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 import Card from './Card'
 import { Character } from '~Api/types'
-import { RootState } from '~Store/reducers'
+import NoResponseImg from '~Assets/img/noresponse.jpg'
 import { fetchCharactersPage } from '~Store/actions/character/List'
+import { RootState } from '~Store/reducers'
 import { getCharacterList } from '~Store/reducers/character/List'
 import Loader from '~Components/Loader'
 
@@ -27,7 +28,7 @@ const List = () => {
   const characterListState = useSelector(
     (state: RootState) => state.character.list
   )
-  const { currentPage, loading, name, totalPages } = characterListState
+  const { criticalError, currentPage, loading, name, totalPages } = characterListState
   const characters: Character[] = getCharacterList(characterListState)
 
   const [hasMoreCharactersToLoad, setHasMoreCharactersToLoad] = useState(true)
@@ -39,6 +40,14 @@ const List = () => {
     } else if (!loading && hasMoreCharactersToLoad) {
       dispatch(fetchCharactersPage(newPage, name))
     }
+  }
+
+  if (criticalError) {
+    return (
+      <Container>
+        <img src={NoResponseImg} alt="No Response from Server" style={{width: '100%', marginTop: 10}}/>
+      </Container>
+    )
   }
 
   if (characters && characters.length) {

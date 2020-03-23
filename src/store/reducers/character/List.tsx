@@ -6,6 +6,7 @@ import {
 } from '~Store/constants/character/List'
 
 const initialState: CharacterListStateType = {
+  criticalError: false,
   currentPage: 0,
   error: false,
   loading: false,
@@ -19,6 +20,12 @@ export const listReducer = (
   action: CharacterListActionType
 ): CharacterListStateType => {
   switch (action.type) {
+    case ActionType.CHARACTER_LIST_CONNECTION_FAILED:
+      return {
+        ...initialState,
+        criticalError: action.criticalError,
+        loading: false
+      }
     case ActionType.CHARACTER_LIST_FAILED:
       return {
         ...initialState,

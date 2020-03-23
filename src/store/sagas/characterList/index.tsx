@@ -1,16 +1,8 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApiResponse, get } from '~Api'
-import { ActionType } from '~Store/constants/character/List'
+import { ActionType, DispatchType } from '~Store/constants/character/List'
 
-interface PayloadType {
-  name: string | undefined
-  page: number
-}
-interface GetCharactersArgs {
-  type: string
-  payload: PayloadType
-}
-function* getCharacters({ payload }: GetCharactersArgs) {
+function* getCharacters({ payload }: DispatchType) {
   try {
     const { page, name } = payload
     const { data }: ApiResponse<'character', {}> = yield call(
@@ -25,8 +17,17 @@ function* getCharacters({ payload }: GetCharactersArgs) {
       payload: data,
       type: ActionType.CHARACTER_LIST_SUCCEEDED,
     })
-  } catch (e) {
-    yield put({ error: true, type: ActionType.CHARACTER_LIST_FAILED })
+  } catch (error) {
+    if (error.response) {
+      // Response but no results
+      yield put({ error: true, type: ActionType.CHARACTER_LIST_FAILED })
+    } else {
+      // No response from server
+      yield put({
+        criticalError: true,
+        type: ActionType.CHARACTER_LIST_CONNECTION_FAILED,
+      })
+    }
   }
 }
 

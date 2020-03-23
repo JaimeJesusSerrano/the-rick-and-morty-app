@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { ActionType, DispatchAction } from '~Store/constants/locationList'
+import { ActionType, DispatchAction } from '~Store/constants/location/LocationList'
 
 export class LocationListDispatcher {
   private readonly dispatch: Dispatch<DispatchAction>;
@@ -11,6 +11,6 @@ export class LocationListDispatcher {
   fetchLocationsPage = (page: number, name: string) =>
     this.dispatch({ type: ActionType.LOCATION_LIST_FETCH, payload: {page, name} });
 
-  fetchLocationsSearch = (page: number, name: string) =>
-    this.dispatch({ type: ActionType.LOCATION_LIST_SEARCH, payload: { page, name } });
+  fetchLocationsSearch = (name: string) =>
+    this.dispatch({ type: ActionType.LOCATION_LIST_SEARCH, payload: { page: 1, name } });
 }

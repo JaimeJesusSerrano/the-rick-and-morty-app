@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { ReactComponent as Title } from '~Assets/img/locations_title.svg'
 import List from './components/List'
 import SearchBar from './components/SearchBar'
-import { LocationListDispatcher } from '~Store/actions/locationList'
+import { LocationListDispatcher } from '~Store/actions/location/LocationList'
 
 const Locations = () => {
 
@@ -18,7 +18,7 @@ const Locations = () => {
       </Grid>
       <Grid item xs={12}>
         <SearchBar
-          handleChange={debouncedSearchValue => locationDispatcher.fetchLocationsSearch(1, debouncedSearchValue)}
+          handleChange={debouncedSearchValue => locationDispatcher.fetchLocationsSearch(debouncedSearchValue)}
         />
       </Grid>
       <Grid item xs={12}>

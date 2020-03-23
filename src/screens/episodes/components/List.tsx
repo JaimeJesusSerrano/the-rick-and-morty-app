@@ -61,7 +61,7 @@ const List = () => {
           loadMore={loadMoreCharacters}
           hasMore={hasMoreEpisodesToLoad}
           loader={
-            <CustomLoader />
+            <CustomLoader key={0}/>
           }
         >
           <StyledGridList cellHeight="auto" spacing={4}>

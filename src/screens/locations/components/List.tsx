@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
 import {Grid, GridList, GridListTile} from '@material-ui/core'
-import { LocationListDispatcher } from '~Store/actions/locationList'
-import { getLocationList } from '~Store/reducers/locationList'
+import { LocationListDispatcher } from '~Store/actions/location/LocationList'
+import { getLocationList } from '~Store/reducers/location/LocationList'
 import { RootState } from '~Store/reducers'
 import Loader from '~Components/Loader'
 import { Location } from '~Api/types'
 import Card from './Card'
+import NoResponseImg from '~Assets/img/noresponse.jpg'
 
 const Container = styled.div`
 margin-bottom: 50px;
@@ -28,10 +29,9 @@ const List = () => {
   const locationDispatcher = new LocationListDispatcher(dispatch)
 
   const locationListState = useSelector(
-    (state: RootState) => state.locationListState
+    (state: RootState) => state.location.list
   )
-
-  const { currentPage, loading, name, totalPages } = locationListState
+  const { currentPage, loading, name, totalPages, criticalError } = locationListState
   const locations: Location[] = getLocationList(locationListState)
 
   const [hasMoreLocationsToLoad, setHasMoreLocationsToLoad] = useState(true)
@@ -65,7 +65,7 @@ const List = () => {
           loadMore={loadMoreLocations}
           hasMore={hasMoreLocationsToLoad}
           loader={
-            <CustomLoader />
+            <CustomLoader key={0}/>
           }
         >
           <StyledGridList cellHeight="auto" spacing={4}>
@@ -76,10 +76,18 @@ const List = () => {
     )
   }
 
-  if (!loading && totalPages === 0) {
+  if (!loading && !criticalError && totalPages === 0) {
     return (
       <Container>
         There are not locations with this name
+      </Container>
+    )
+  }
+
+  if (!loading && criticalError && totalPages === 0) {
+    return (
+      <Container>
+        <img src={NoResponseImg} alt="No Response from Server" style={{width: '100%', marginTop: 10}}/>
       </Container>
     )
   }

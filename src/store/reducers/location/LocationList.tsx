@@ -1,9 +1,10 @@
-import { ActionType, DispatchAction, LocationListStateType, LocationListActionType } from '~Store/constants/locationList'
+import { ActionType, LocationListStateType, LocationListActionType } from '~Store/constants/location/LocationList'
 import { Location } from '~Api/types'
 
 const initialState: LocationListStateType = {
   currentPage: 0,
   error: false,
+  criticalError: false,
   loading: false,
   name: '',
   pages: {},
@@ -11,10 +12,10 @@ const initialState: LocationListStateType = {
 }
 
 export const locationListReducer = (
-  state: LocationListStateType = initialState,
+  state = initialState,
   action: LocationListActionType
 ): LocationListStateType => {
-  const { type, payload } = action
+  const { type, payload, currentPage, name } = action
   switch (type) {
     case ActionType.LOCATION_LIST_FAILED:
       return {
@@ -22,6 +23,12 @@ export const locationListReducer = (
         error: action.error,
         loading: false
       }
+    case ActionType.LOCATION_LIST_CONNECTION_FAILED:
+        return {
+          ...initialState,
+          criticalError: action.criticalError,
+          loading: false
+        }
     case ActionType.LOCATION_LIST_FETCH:
         return { ...state, loading: true }
     case ActionType.LOCATION_LIST_SEARCH:
@@ -29,21 +36,20 @@ export const locationListReducer = (
     case ActionType.LOCATION_LIST_SUCCEEDED: 
         return {
           ...state,
-          currentPage: action.currentPage,
+          currentPage,
           loading: false,
-          name: action.name,
+          name,
           pages: {
             ...state.pages,
-            [action.currentPage as number]: payload.results
+            [currentPage as number]: payload.results
           },
           totalPages: payload.info.pages
         }
     default:
-      return initialState
+       return initialState
   }
 }
 
-// Ask Alexis: Esto va aquí?
 export const getLocationList = (state: LocationListStateType) => {
   let locations: Location[] = []
   const emptyLocationArray: Location[] = []

@@ -1,25 +1,22 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import { ActionType, DispatchAction } from "~Store/constants/locationList";
-import { ApiResponse, get } from '~Api';
+import { ActionType, DispatchAction } from "~Store/constants/location/LocationList";
+import { get } from '~Api';
 
-function* getLocations({ payload }: DispatchAction) {
+// REFACTOR FUNCTION
+function* getLocations({payload} : DispatchAction) {
+  const { page: currentPage, name } = payload
   try {
-    const { page, name } = payload
-    const { data }: ApiResponse<'location', {}> = yield call(
-      get,
-      'location',
-      payload
-    )
-
+    const { data } = yield call(get, 'location',payload)
     yield put({
-      currentPage: page,
-      name,
-      payload: data,
+      payload: data, currentPage, name,
       type: ActionType.LOCATION_LIST_SUCCEEDED
     })
-
-  } catch (e) {
-    yield put({ error: true, type: ActionType.LOCATION_LIST_FAILED})
+  } catch (error) {
+    if (error.response) { // Response but no results
+      yield put({ error: true, type: ActionType.LOCATION_LIST_FAILED})
+    } else { // No response from server
+      yield put({ criticalError: true, type: ActionType.LOCATION_LIST_CONNECTION_FAILED})
+    }
   }
 }
 

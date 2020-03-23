@@ -1,4 +1,5 @@
 import { Action } from 'redux'
+import { Character, ResultsInfo } from '~Api/types'
 
 export enum ActionType {
   CHARACTER_LIST_CONNECTION_FAILED = 'CHARACTER_LIST_CONNECTION_FAILED',
@@ -14,7 +15,7 @@ export interface CharacterListActionType {
   error?: boolean
   name: string
   pages: {}
-  payload?: any
+  payload: ResultsInfo<Character>
   type: string
 }
 
@@ -25,7 +26,7 @@ export interface CharacterListStateType {
   error?: boolean
   loading: boolean
   name: string
-  pages: Dictionary<number>
+  pages: Dictionary<Character[]>
   totalPages: number
 }
 

@@ -5,7 +5,7 @@ import {
   EPISODE_LIST_FAILED,
   EPISODE_LIST_SEARCH,
   EPISODE_LIST_FETCH,
-} from '~Store/constants/episodeList'
+} from '~Store/constants/episode/EpisodeList'
 
 interface PayloadType {
   name: string | undefined

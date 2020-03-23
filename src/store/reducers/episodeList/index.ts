@@ -3,7 +3,7 @@ import {
   EPISODE_LIST_FETCH,
   EPISODE_LIST_SEARCH,
   EPISODE_LIST_SUCCEEDED,
-} from '~Store/constants/episodeList'
+} from '~Store/constants/episode/EpisodeList'
 
 import { Episode } from '../../../services/api/types'
 

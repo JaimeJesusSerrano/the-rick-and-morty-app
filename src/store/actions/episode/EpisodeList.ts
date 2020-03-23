@@ -1,24 +1,16 @@
-import {
-  EPISODE_LIST_FETCH,
-  EPISODE_LIST_SEARCH,
-} from '~Store/constants/episodeList'
+import { Dispatch } from 'react';
+import { ActionType, DispatchAction } from '~Store/constants/episode/EpisodeList'
 
-export const fetchEpisodesPage = (page: number, name: string) => {
-  return {
-    type: EPISODE_LIST_FETCH,
-    payload: {
-      page,
-      name,
-    },
-  }
-}
+export class EpisodeListDispatcher {
+  private readonly dispatch: Dispatch<DispatchAction>;
 
-export const fetchEpisodesSearch = (page: number, name: string) => {
-  return {
-    type: EPISODE_LIST_SEARCH,
-    payload: {
-      page,
-      name,
-    },
+  constructor(dispatch: Dispatch<DispatchAction>) {
+    this.dispatch = dispatch;
   }
+
+  fetchEpisodePage = (page: number, name: string) =>
+    this.dispatch({ type: ActionType.EPISODE_LIST_FETCH, payload: {page, name} });
+
+  fetchEpisodeSearch = (name: string) =>
+    this.dispatch({ type: ActionType.EPISODE_LIST_SEARCH, payload: { page: 1, name } });
 }

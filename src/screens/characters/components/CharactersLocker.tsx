@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  Card as MaterialUiCard,
-  CardMedia,
-  Container,
-  ExpansionPanelDetails,
-} from '@material-ui/core'
+import { CardActionArea, CardMedia, Container } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import styled from 'styled-components'
 import { CharacterComparableInfo } from './Card'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 
@@ -34,26 +28,26 @@ const mortySelected: CharacterComparableInfo = {
 const testCharacters: CharactersSelected = [rickSelected, mortySelected]
 
 const CharactersLocker = (): JSX.Element => {
-  // TODO: get characters selected using redux.
   const fetchCharacterSelected: CharactersSelected = testCharacters
-  const getCharactersSelected = fetchCharacterSelected.map(
+  const charactersSelected = fetchCharacterSelected.map(
     (characterSelected: CharacterComparableInfo) => (
       <div key={characterSelected.name}>
-        <CardMedia>
-          <LazyLoadImage
-            alt={characterSelected.name}
-            height={200}
-            placeholderSrc={UnknownIcon}
-            src={characterSelected.image}
-            threshold={500}
-            width={200}
-          />
-        </CardMedia>
+        <CardActionArea>
+          <CardMedia>
+            <LazyLoadImage
+              alt={characterSelected.name}
+              height={200}
+              placeholderSrc={UnknownIcon}
+              src={characterSelected.image}
+              threshold={500}
+              width={200}
+            />
+          </CardMedia>
+        </CardActionArea>
       </div>
     )
   )
-
-  return <Container>{getCharactersSelected}</Container>
+  return <Container>{charactersSelected}</Container>
 }
 
 export default CharactersLocker

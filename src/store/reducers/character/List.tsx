@@ -1,22 +1,9 @@
+import { Character } from '~Api/types'
 import {
-  CHARACTER_LIST_FAILED,
-  CHARACTER_LIST_FETCH,
-  CHARACTER_LIST_SEARCH,
-  CHARACTER_LIST_SUCCEEDED,
-} from '~Store/constants/characterList'
-
-import { Character } from '../../../services/api/types'
-
-type Dictionary = { [index: number]: {} }
-
-interface CharacterListStateType {
-  currentPage: number
-  error: boolean
-  loading: boolean
-  name: string
-  pages: Dictionary // TODO add specific type
-  totalPages: number
-}
+  ActionType,
+  CharacterListActionType,
+  CharacterListStateType,
+} from '~Store/constants/character/List'
 
 const initialState: CharacterListStateType = {
   currentPage: 0,
@@ -27,31 +14,22 @@ const initialState: CharacterListStateType = {
   totalPages: 0,
 }
 
-interface ReduxActionType {
-  currentPage: number
-  error?: boolean
-  name: string
-  pages: {}
-  payload?: any
-  type: string
-}
-
-export const characterListReducer = (
+export const listReducer = (
   state: CharacterListStateType = initialState,
-  action: ReduxActionType
-) => {
+  action: CharacterListActionType
+): CharacterListStateType => {
   switch (action.type) {
-    case CHARACTER_LIST_FAILED:
+    case ActionType.CHARACTER_LIST_FAILED:
       return {
         ...initialState,
         error: action.error,
         loading: false,
       }
-    case CHARACTER_LIST_FETCH:
+    case ActionType.CHARACTER_LIST_FETCH:
       return { ...state, loading: true }
-    case CHARACTER_LIST_SEARCH:
+    case ActionType.CHARACTER_LIST_SEARCH:
       return { ...initialState, loading: true }
-    case CHARACTER_LIST_SUCCEEDED:
+    case ActionType.CHARACTER_LIST_SUCCEEDED:
       return {
         ...state,
         currentPage: action.currentPage,

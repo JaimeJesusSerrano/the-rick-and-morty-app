@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from './Card'
-import { Character } from '../../../services/api/types'
+import { Character } from '~Api/types'
 import { RootState } from '~Store/reducers'
-import { fetchCharactersPage } from '~Store/actions/characterList'
-import { getCharacterList } from '~Store/reducers/characterList'
+import { fetchCharactersPage } from '~Store/actions/character/List'
+import { getCharacterList } from '~Store/reducers/character/List'
 import Loader from '~Components/Loader'
 
 const Container = styled.div`
@@ -25,7 +25,7 @@ const StyledGridListTile = styled(GridListTile)`
 const List = () => {
   const dispatch = useDispatch()
   const characterListState = useSelector(
-    (state: RootState) => state.characterListState
+    (state: RootState) => state.character.list
   )
   const { currentPage, loading, name, totalPages } = characterListState
   const characters: Character[] = getCharacterList(characterListState)

@@ -1,11 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApiResponse, get } from '~Api'
-import {
-  CHARACTER_LIST_SUCCEEDED,
-  CHARACTER_LIST_FAILED,
-  CHARACTER_LIST_SEARCH,
-  CHARACTER_LIST_FETCH,
-} from '~Store/constants/characterList'
+import { ActionType } from '~Store/constants/character/List'
 
 interface PayloadType {
   name: string | undefined
@@ -28,17 +23,17 @@ function* getCharacters({ payload }: GetCharactersArgs) {
       currentPage: page,
       name,
       payload: data,
-      type: CHARACTER_LIST_SUCCEEDED,
+      type: ActionType.CHARACTER_LIST_SUCCEEDED,
     })
   } catch (e) {
-    yield put({ error: true, type: CHARACTER_LIST_FAILED })
+    yield put({ error: true, type: ActionType.CHARACTER_LIST_FAILED })
   }
 }
 
 function* charactersSaga() {
   yield all([
-    takeLatest(CHARACTER_LIST_SEARCH, getCharacters),
-    takeLatest(CHARACTER_LIST_FETCH, getCharacters),
+    takeLatest(ActionType.CHARACTER_LIST_SEARCH, getCharacters),
+    takeLatest(ActionType.CHARACTER_LIST_FETCH, getCharacters),
   ])
 }
 

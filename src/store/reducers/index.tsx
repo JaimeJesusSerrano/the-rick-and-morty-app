@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import { characterListReducer } from '~Store/reducers/characterList'
-import { locationReducer } from '~Store/reducers/location'
+import { characterReducer } from '~Store/reducers/character'
 import { episodeReducer } from '~Store/reducers/episode'
+import { locationReducer } from '~Store/reducers/location'
 
 const rootReducer = combineReducers({
-  characterListState: characterListReducer,
-  location: locationReducer,
+  character: characterReducer,
   episode : episodeReducer,
+  location: locationReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

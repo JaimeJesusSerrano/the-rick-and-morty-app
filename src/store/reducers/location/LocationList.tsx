@@ -1,10 +1,14 @@
-import { ActionType, LocationListStateType, LocationListActionType } from '~Store/constants/location/LocationList'
 import { Location } from '~Api/types'
+import {
+  ActionType,
+  LocationListStateType,
+  LocationListActionType,
+} from '~Store/constants/location/LocationList'
 
 const initialState: LocationListStateType = {
+  criticalError: false,
   currentPage: 0,
   error: false,
-  criticalError: false,
   loading: false,
   name: '',
   pages: {},
@@ -21,32 +25,32 @@ export const locationListReducer = (
       return {
         ...initialState,
         error: action.error,
-        loading: false
+        loading: false,
       }
     case ActionType.LOCATION_LIST_CONNECTION_FAILED:
-        return {
-          ...initialState,
-          criticalError: action.criticalError,
-          loading: false
-        }
+      return {
+        ...initialState,
+        criticalError: action.criticalError,
+        loading: false,
+      }
     case ActionType.LOCATION_LIST_FETCH:
-        return { ...state, loading: true }
+      return { ...state, loading: true }
     case ActionType.LOCATION_LIST_SEARCH:
-        return { ...initialState, loading: true }
-    case ActionType.LOCATION_LIST_SUCCEEDED: 
-        return {
-          ...state,
-          currentPage,
-          loading: false,
-          name,
-          pages: {
-            ...state.pages,
-            [currentPage as number]: payload.results
-          },
-          totalPages: payload.info.pages
-        }
+      return { ...initialState, loading: true }
+    case ActionType.LOCATION_LIST_SUCCEEDED:
+      return {
+        ...state,
+        currentPage,
+        loading: false,
+        name,
+        pages: {
+          ...state.pages,
+          [currentPage as number]: payload.results,
+        },
+        totalPages: payload.info.pages,
+      }
     default:
-       return initialState
+      return initialState
   }
 }
 

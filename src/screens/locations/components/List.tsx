@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import {Grid, GridList, GridListTile} from '@material-ui/core'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
-import {Grid, GridList, GridListTile} from '@material-ui/core'
-import { LocationListDispatcher } from '~Store/actions/location/LocationList'
-import { getLocationList } from '~Store/reducers/location/LocationList'
-import { RootState } from '~Store/reducers'
-import Loader from '~Components/Loader'
-import { Location } from '~Api/types'
+import styled from 'styled-components'
 import Card from './Card'
+import { Location } from '~Api/types'
 import NoResponseImg from '~Assets/img/noresponse.jpg'
+import { LocationListDispatcher } from '~Store/actions/location/LocationList'
+import { RootState } from '~Store/reducers'
+import { getLocationList } from '~Store/reducers/location/LocationList'
+import Loader from '~Components/Loader'
 
 const Container = styled.div`
 margin-bottom: 50px;
@@ -97,8 +97,6 @@ const List = () => {
       <CustomLoader />
     </Container>
   )
-
-
 }
 
 

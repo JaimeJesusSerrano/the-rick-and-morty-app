@@ -6,10 +6,6 @@ import { ReactComponent as MortyIcon } from '~Assets/img/morty.svg'
 import { ReactComponent as RickIcon } from '~Assets/img/rick.svg'
 import routes from '~Routes/routes'
 
-const StyledRickIcon = styled(RickIcon)`
-  position: absolute;
-`
-
 const Logo = () => {
   const [isRick, setIsRick] = useState(true)
   const [rickOpacity, setRickOpacity] = useState(1.0)
@@ -60,5 +56,9 @@ const Logo = () => {
     </IconButton>
   )
 }
+
+const StyledRickIcon = styled(RickIcon)`
+  position: absolute;
+`
 
 export default Logo

@@ -41,6 +41,21 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "~Api(.*)$": "<rootDir>/src/services/api$1",
+      "~Assets(.*)$": "<rootDir>/src/assets$1",
+      "~Components(.*)$": "<rootDir>/src/components$1",
+      "~Hooks(.*)$": "<rootDir>/src/hooks$1",
+      "~Routes(.*)$": "<rootDir>/src/routes$1",
+      "~Screens(.*)$": "<rootDir>/src/screens$1",
+      "~Store(.*)$": "<rootDir>/src/store$1",
+      "~Theme(.*)$": "<rootDir>/src/theme$1",
+      "~Utils(.*)$": "<rootDir>/src/utils$1"
+    },
+    "resetMocks": true,
+    "resetModules": true
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
@@ -51,6 +66,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
@@ -63,6 +80,8 @@
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.21.0",
     "babel-plugin-module-resolver": "^4.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-typescript": "^7.0.0",
@@ -75,6 +94,7 @@
     "eslint-plugin-react-hooks": "^2.4.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.13.1"
   }
 }

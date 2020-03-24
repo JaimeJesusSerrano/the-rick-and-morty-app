@@ -9,9 +9,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import Layout from '~Components/layout'
+import Router from '~Routes'
 import { configureStore } from '~Store/config'
-import Router from './routes'
-import theme from './theme'
+import theme from '~Theme'
 
 const store = configureStore()
 

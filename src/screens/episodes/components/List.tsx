@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Card from './Card'
 import { Episode } from '../../../services/api/types'
 import { RootState } from '~Store/reducers'
-import { fetchEpisodesPage } from '~Store/actions/episode/EpisodeList'
 import { getEpisodeList } from '~Store/reducers/episode/EpisodeList'
 import Loader from '~Components/Loader'
+import NoResponseImg from '~Assets/img/noresponse.jpg'
+import { EpisodeListDispatcher } from '~Store/actions/episode/EpisodeList'
 
 const Container = styled.div`
   margin-bottom: 50px;
@@ -24,20 +25,21 @@ const StyledGridListTile = styled(GridListTile)`
 
 const List = () => {
   const dispatch = useDispatch()
+  const episodeDispatcher = new EpisodeListDispatcher(dispatch)
   const episodeListState = useSelector(
-    (state: RootState) => state.episodeListState
+    (state: RootState) => state.episode.list
   )
-  const { currentPage, loading, name, totalPages } = episodeListState
+  const { currentPage, loading, name, totalPages, criticalError } = episodeListState
   const episodes: Episode[] = getEpisodeList(episodeListState)
 
   const [hasMoreEpisodesToLoad, setHasMoreEpisodesToLoad] = useState(true)
 
-  const loadMoreCharacters = () => {
-    const newPage = currentPage + 1
+  const loadMoreEpisodes = () => {
+    const newPage = currentPage as number + 1
     if (newPage > totalPages) {
       setHasMoreEpisodesToLoad(false)
     } else if (!loading && hasMoreEpisodesToLoad) {
-      dispatch(fetchEpisodesPage(newPage, name))
+      episodeDispatcher.fetchEpisodePage(newPage, name as string)
     }
   }
 
@@ -58,7 +60,7 @@ const List = () => {
       <Container>
         <InfiniteScroll
           pageStart={1}
-          loadMore={loadMoreCharacters}
+          loadMore={loadMoreEpisodes}
           hasMore={hasMoreEpisodesToLoad}
           loader={
             <CustomLoader key={0}/>
@@ -72,10 +74,19 @@ const List = () => {
     )
   }
 
-  if (!loading && totalPages === 0) {
+  if (!loading && !criticalError && totalPages === 0) {
     return (
       <Container>
         There are not characters with this name
+      </Container>
+    )
+  }
+
+  if (!loading && criticalError && totalPages === 0) {
+    return (
+      <Container>
+        <img src={NoResponseImg} alt="No Response from Server"
+             style={{width: '100%', marginTop: 10}}/>
       </Container>
     )
   }

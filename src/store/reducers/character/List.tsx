@@ -1,11 +1,11 @@
 import { Character } from '~Api/types'
 import {
   ActionType,
-  CharacterListActionType,
-  CharacterListStateType,
+  ResponseType,
+  StateType,
 } from '~Store/constants/character/List'
 
-const initialState: CharacterListStateType = {
+const initialState: StateType = {
   criticalError: false,
   currentPage: 0,
   error: false,
@@ -16,9 +16,9 @@ const initialState: CharacterListStateType = {
 }
 
 export const listReducer = (
-  state: CharacterListStateType = initialState,
-  action: CharacterListActionType
-): CharacterListStateType => {
+  state: StateType = initialState,
+  action: ResponseType
+): StateType => {
   switch (action.type) {
     case ActionType.CHARACTER_LIST_CONNECTION_FAILED:
       return {
@@ -53,7 +53,7 @@ export const listReducer = (
   }
 }
 
-export const getCharacterList = (state: CharacterListStateType) => {
+export const getCharacterList = (state: StateType) => {
   let characters: Character[] = []
   const emptyCharacterArray: Character[] = []
 

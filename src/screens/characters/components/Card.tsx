@@ -3,6 +3,7 @@ import { Card as MaterialUiCard, CardContent } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 import { Character } from '~Api/types'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import CardContentItem from '~Screens/characters/components/CardContentItem'
@@ -37,7 +38,7 @@ const Card = ({
       />
       <StyledCardContent>
         {cardContentItems.map((item) => {
-          return (<CardContentItem key={0} title={item.title} value={item.value} />)
+          return (<CardContentItem key={uuidv4()} title={item.title} value={item.value} />)
         })}
       </StyledCardContent>
     </StyledCard>

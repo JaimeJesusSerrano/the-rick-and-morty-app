@@ -9,7 +9,16 @@ export enum ActionType {
   CHARACTER_LIST_SUCCEEDED = 'CHARACTER_LIST_SUCCEEDED',
 }
 
-export interface CharacterListActionType {
+export interface DispatchType extends Action {
+  payload: PayloadType
+}
+
+interface PayloadType {
+  name: string
+  page: number
+}
+
+export interface ResponseType {
   criticalError?: boolean
   currentPage: number
   error?: boolean
@@ -20,7 +29,7 @@ export interface CharacterListActionType {
 }
 
 type Dictionary<T> = { [index: number]: T }
-export interface CharacterListStateType {
+export interface StateType {
   criticalError?: boolean
   currentPage: number
   error?: boolean
@@ -28,12 +37,4 @@ export interface CharacterListStateType {
   name: string
   pages: Dictionary<Character[]>
   totalPages: number
-}
-
-interface PayloadType {
-  name: string
-  page: number
-}
-export interface DispatchType extends Action<ActionType> {
-  payload: PayloadType
 }

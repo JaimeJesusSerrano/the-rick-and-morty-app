@@ -1,8 +1,8 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 import { ApiResponse, get } from '~Api'
 import { ActionType, DispatchType } from '~Store/constants/character/List'
 
-function* getCharacters({ payload }: DispatchType) {
+export function* getCharacters({ payload }: DispatchType) {
   try {
     const { page, name } = payload
     const { data }: ApiResponse<'character', {}> = yield call(
@@ -30,12 +30,3 @@ function* getCharacters({ payload }: DispatchType) {
     }
   }
 }
-
-function* charactersSaga() {
-  yield all([
-    takeLatest(ActionType.CHARACTER_LIST_SEARCH, getCharacters),
-    takeLatest(ActionType.CHARACTER_LIST_FETCH, getCharacters),
-  ])
-}
-
-export default charactersSaga

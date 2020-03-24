@@ -74,7 +74,7 @@ const List = () => {
 
     return (
       <InfiniteScrollList
-        hasMoreCharactersToLoad={hasMoreCharactersToLoad}
+        hasMoreToLoad={hasMoreCharactersToLoad}
         loadMoreCharacters={loadMoreCharacters}
       >
         {Items}

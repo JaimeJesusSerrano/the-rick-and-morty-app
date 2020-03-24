@@ -6,14 +6,14 @@ import ListLoader from '~Components/ListLoader'
 
 interface InfiniteScrollListProps {
   children: React.ReactNode
-  hasMoreCharactersToLoad: boolean
+  hasMoreToLoad: boolean
   loadMoreCharacters: () => void
 }
 
 const InfiniteScrollList = (props: InfiniteScrollListProps) => {
   const {
     children,
-    hasMoreCharactersToLoad,
+    hasMoreToLoad,
     loadMoreCharacters,
   } = props
 
@@ -23,7 +23,7 @@ const InfiniteScrollList = (props: InfiniteScrollListProps) => {
         <InfiniteScroll
           pageStart={1}
           loadMore={loadMoreCharacters}
-          hasMore={hasMoreCharactersToLoad}
+          hasMore={hasMoreToLoad}
           loader={<ListLoader key={0} />}
         >
           <StyledGridList cellHeight="auto" spacing={4}>

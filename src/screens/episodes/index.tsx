@@ -2,13 +2,14 @@ import { Grid } from '@material-ui/core'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as Title } from '~Assets/img/episodes_title.svg'
-import { fetchEpisodesSearch } from '~Store/actions/episode/EpisodeList'
+import { EpisodeListDispatcher } from '~Store/actions/episode/EpisodeList'
 import Comparator from './components/Comparator'
 import List from './components/List'
 import SearchBar from './components/SearchBar'
 
 const Episodes = () => {
   const dispatch = useDispatch()
+  const episodeDispatcher = new EpisodeListDispatcher(dispatch)
 
   return (
     <Grid container>
@@ -18,7 +19,7 @@ const Episodes = () => {
       <Grid item xs={12}>
         <SearchBar
           handleChange={debouncedSearchValue =>
-            dispatch(fetchEpisodesSearch(1, debouncedSearchValue))
+            episodeDispatcher.fetchEpisodeSearch(debouncedSearchValue)
           }
         />
       </Grid>

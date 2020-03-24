@@ -1,34 +1,28 @@
 import React, { useState } from 'react'
-import {Grid, GridList, GridListTile} from '@material-ui/core'
-import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import Card from './Card'
+import { GridListTile } from '@material-ui/core'
 import { Character } from '~Api/types'
 import NoResponseImg from '~Assets/img/noresponse.jpg'
+import InfiniteScrollList from '~Components/InfiniteScrollList'
+import ListLoader from '~Components/ListLoader'
 import { fetchCharactersPage } from '~Store/actions/character/List'
 import { RootState } from '~Store/reducers'
 import { getCharacterList } from '~Store/reducers/character/List'
-import Loader from '~Components/Loader'
-
-const Container = styled.div`
-  margin-bottom: 50px;
-`
-
-const StyledGridList = styled(GridList)`
-  justify-content: space-around;
-`
-
-const StyledGridListTile = styled(GridListTile)`
-  margin-top: 10px;
-`
+import Card from '~Screens/characters/components/Card'
 
 const List = () => {
   const dispatch = useDispatch()
   const characterListState = useSelector(
     (state: RootState) => state.character.list
   )
-  const { criticalError, currentPage, loading, name, totalPages } = characterListState
+  const {
+    criticalError,
+    currentPage,
+    loading,
+    name,
+    totalPages,
+  } = characterListState
   const characters: Character[] = getCharacterList(characterListState)
 
   const [hasMoreCharactersToLoad, setHasMoreCharactersToLoad] = useState(true)
@@ -42,72 +36,61 @@ const List = () => {
     }
   }
 
-  if (criticalError) {
+  if (loading && !characters.length) {
     return (
       <Container>
-        <img src={NoResponseImg} alt="No Response from Server" style={{width: '100%', marginTop: 10}}/>
+        <ListLoader />
       </Container>
     )
   }
 
-  if (characters && characters.length) {
-    const Items =
-      characters.map((character: Character) => (
-        <StyledGridListTile
-          key={character.id}
-          cols={1}
-          rows={1}
-          style={{ width: 200 }}
-        >
-          <Card character={character} />
-        </StyledGridListTile>
-      ))
-
+  if (criticalError) {
     return (
       <Container>
-        <InfiniteScroll
-          pageStart={1}
-          loadMore={loadMoreCharacters}
-          hasMore={hasMoreCharactersToLoad}
-          loader={
-            <CustomLoader key={0}/>
-          }
-        >
-          <StyledGridList cellHeight="auto" spacing={4}>
-            {Items}
-          </StyledGridList>
-        </InfiniteScroll>
+        <img
+          src={NoResponseImg}
+          alt="No Response from Server"
+          style={{ width: '100%', marginTop: 10 }}
+        />
       </Container>
     )
   }
 
   if (!loading && totalPages === 0) {
+    return <Container>There are not characters with this name</Container>
+  }
+
+  if (characters && characters.length) {
+    const Items = characters.map(character => (
+      <StyledGridListTile
+        key={character.id}
+        cols={1}
+        rows={1}
+        style={{ width: 200 }}
+      >
+        <Card character={character} />
+      </StyledGridListTile>
+    ))
+
     return (
-      <Container>
-        There are not characters with this name
-      </Container>
+      <InfiniteScrollList
+        hasMoreCharactersToLoad={hasMoreCharactersToLoad}
+        loadMoreCharacters={loadMoreCharacters}
+      >
+        {Items}
+      </InfiniteScrollList>
     )
   }
 
-  return (
-    <Container>
-      <CustomLoader />
-    </Container>
-  )
+  return null
 }
 
-const CustomLoader = () => {
-  return (
-    <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justify="center"
-    >
-      <Loader height={125} width={125} />
-    </Grid>
-  )
-}
+const Container = styled.div`
+  margin-bottom: 50px;
+`
+
+const StyledGridListTile = styled(GridListTile)`
+  margin-top: 10px;
+`
 
 export default List

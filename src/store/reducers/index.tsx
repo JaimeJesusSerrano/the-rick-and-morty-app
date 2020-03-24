@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { characterReducer } from '~Store/reducers/character'
-import { episodeListReducer } from '~Store/reducers/episodeList'
+import { episodeReducer } from '~Store/reducers/episode'
 import { locationReducer } from '~Store/reducers/location'
 
 const rootReducer = combineReducers({
   character: characterReducer,
-  episodeListState: episodeListReducer,
+  episode : episodeReducer,
   location: locationReducer,
 })
 

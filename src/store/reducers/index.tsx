@@ -6,7 +6,7 @@ import { episodeReducer } from '~Store/reducers/episode'
 const rootReducer = combineReducers({
   characterListState: characterListReducer,
   location: locationReducer,
-  episodeListState : episodeReducer,
+  episode : episodeReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

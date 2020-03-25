@@ -13,9 +13,7 @@ import InfiniteScrollList from '~Components/InfiniteScrollList'
 
 const List = () => {
   const dispatch = useDispatch()
-  const episodeListState = useSelector(
-    (state: RootState) => state.episode.list
-  )
+  const episodeListState = useSelector((state: RootState) => state.episode.list)
   const {
     criticalError,
     currentPage,
@@ -32,45 +30,45 @@ const List = () => {
     if (newPage > totalPages) {
       setHasMoreEpisodesToLoad(false)
     } else if (!loading && hasMoreEpisodesToLoad) {
-      dispatch(fetchEpisodesPage(newPage, name ))
+      dispatch(fetchEpisodesPage(newPage, name))
     }
   }
 
-  if(loading && !episodes.length)
-    return(
+  if (loading && !episodes.length) {
+    return (
       <Container>
         <ListLoader/>
       </Container>
     )
-  if(criticalError){
+  }
+  if (criticalError) {
     return (
       <Container>
         <img
           src={NoResponseImg}
           alt="No response from Server"
-          style={{width: '100%', marginTop: 10}}
-          />
+          style={{ width: '100%', marginTop: 10 }}
+        />
       </Container>
     )
   }
 
-  if(!loading && totalPages === 0){
+  if (!loading && totalPages === 0) {
     return <Container> There are not episodes with this name</Container>
   }
 
-  if (episodes && episodes.length){
-    const Items = episodes.map(episode =>(
+  if (episodes && episodes.length) {
+    const Items = episodes.map(episode => (
       <StyledGridListTile
-      key={episode.id}
-      cols={1}
-      rows={1}
-      style={{width: 200}}
+        key={episode.id}
+        cols={1}
+        rows={1}
+        style={{ width: 200 }}
       >
-      <Card episode={episode} />
-    </StyledGridListTile>
-
+        <Card episode={episode} />
+      </StyledGridListTile>
     ))
-    return(
+    return (
       <InfiniteScrollList
         hasMore={hasMoreEpisodesToLoad}
         loadMore={loadMoreEpisodes}

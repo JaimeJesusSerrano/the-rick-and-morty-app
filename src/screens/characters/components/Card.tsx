@@ -1,5 +1,11 @@
-import React from 'react'
-import { Card as MaterialUiCard, CardContent } from '@material-ui/core'
+import React, { useState } from 'react'
+import {
+  Card as MaterialUiCard,
+  CardContent,
+  CardActionArea,
+  CardActions,
+  CardMedia,
+} from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import styled from 'styled-components'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { CardActionArea, CardMedia, Container } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { CharacterComparableInfo } from './Card'
@@ -31,7 +32,7 @@ const CharactersLocker = (): JSX.Element => {
   const fetchCharacterSelected: CharactersSelected = testCharacters
   const charactersSelected = fetchCharacterSelected.map(
     (characterSelected: CharacterComparableInfo) => (
-      <div key={characterSelected.name}>
+      <div key={uuidv4()}>
         <CardActionArea>
           <CardMedia>
             <LazyLoadImage

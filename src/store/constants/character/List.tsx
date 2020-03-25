@@ -29,12 +29,13 @@ export interface ResponseType {
 }
 
 type Dictionary<T> = { [index: number]: T }
+export type PagesType = Dictionary<Character[]>
 export interface StateType {
   criticalError?: boolean
   currentPage: number
   error?: boolean
   loading: boolean
   name: string
-  pages: Dictionary<Character[]>
+  pages: PagesType
   totalPages: number
 }

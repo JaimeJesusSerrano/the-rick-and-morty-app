@@ -6,14 +6,13 @@ import { configureStore } from '~Store/config'
 
 const store = configureStore()
 
-test('App snapshot', () => {
+test('[App] shallow Snapshot', () => {
   const component = shallow(<App />)
   expect(component).toMatchSnapshot()
 })
 
-test('App Provider is loaded correctly', () => {
+test('[App] Provider is loaded correctly', () => {
   const AppComponent = shallow(<App />)
   const ProviderComponent = <Provider store={store} />
   AppComponent.contains([ProviderComponent])
 })
-

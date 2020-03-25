@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Character card snapshot 1`] = `
+<Styled(WithStyles(ForwardRef(Card)))>
+  <t
+    afterLoad={[Function]}
+    alt="Rick Sanchez"
+    beforeLoad={[Function]}
+    delayMethod="throttle"
+    delayTime={300}
+    effect="blur"
+    height={200}
+    placeholderSrc="unknown.jpeg"
+    src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    threshold={500}
+    useIntersectionObserver={true}
+    visibleByDefault={false}
+    width={200}
+    wrapperClassName=""
+  />
+  <Styled(WithStyles(ForwardRef(CardContent)))>
+    <CardContentItem
+      key="test-key-1"
+      title="NAME"
+      value="Rick Sanchez"
+    />
+    <CardContentItem
+      key="test-key-2"
+      title="STATUS"
+      value="Alive"
+    />
+    <CardContentItem
+      key="test-key-3"
+      title="SPECIES"
+      value="Human"
+    />
+    <CardContentItem
+      key="test-key-4"
+      title="GENDER"
+      value="Male"
+    />
+    <CardContentItem
+      key="test-key-5"
+      title="ORIGIN"
+      value="Earth (C-137)"
+    />
+    <CardContentItem
+      key="test-key-6"
+      title="LAST LOCATIONs"
+      value="Earth (Replacement Dimension)"
+    />
+  </Styled(WithStyles(ForwardRef(CardContent)))>
+</Styled(WithStyles(ForwardRef(Card)))>
+`;
+
+exports[`renders correctly 1`] = `
+<Styled(WithStyles(ForwardRef(Card)))>
+  <t
+    afterLoad={[Function]}
+    alt="Rick Sanchez"
+    beforeLoad={[Function]}
+    delayMethod="throttle"
+    delayTime={300}
+    effect="blur"
+    height={200}
+    placeholderSrc="unknown.jpeg"
+    src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    threshold={500}
+    useIntersectionObserver={true}
+    visibleByDefault={false}
+    width={200}
+    wrapperClassName=""
+  />
+  <Styled(WithStyles(ForwardRef(CardContent)))>
+    <CardContentItem
+      key="test-key-1"
+      title="NAME"
+      value="Rick Sanchez"
+    />
+    <CardContentItem
+      key="test-key-2"
+      title="STATUS"
+      value="Alive"
+    />
+    <CardContentItem
+      key="test-key-3"
+      title="SPECIES"
+      value="Human"
+    />
+    <CardContentItem
+      key="test-key-4"
+      title="GENDER"
+      value="Male"
+    />
+    <CardContentItem
+      key="test-key-5"
+      title="ORIGIN"
+      value="Earth (C-137)"
+    />
+    <CardContentItem
+      key="test-key-6"
+      title="LAST LOCATION"
+      value="Earth (Replacement Dimension)"
+    />
+  </Styled(WithStyles(ForwardRef(CardContent)))>
+</Styled(WithStyles(ForwardRef(Card)))>
+`;

@@ -2,7 +2,7 @@ import { ActionType } from '~Store/constants/episode/List'
 
 export const fetchEpisodesPage = (page: number, name: string) => {
   return {
-    type: ActionType.CHARACTER_LIST_FETCH,
+    type: ActionType.EPISODE_LIST_FETCH,
     payload: {
       page,
       name,
@@ -12,7 +12,7 @@ export const fetchEpisodesPage = (page: number, name: string) => {
 
 export const fetchEpisodesSearch = (page: number, name: string) => {
   return {
-    type: ActionType.CHARACTER_LIST_SEARCH,
+    type: ActionType.EPISODE_LIST_SEARCH,
     payload: {
       page,
       name,

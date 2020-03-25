@@ -1,5 +1,5 @@
 import { Episode } from '~Api/types'
-import { ActionType, EpisodeListActionType, EpisodeListStateType } from '~Store/constants/episode/EpisodeList'
+import { ActionType, EpisodeListActionType, EpisodeListStateType } from '~Store/constants/episode/List'
 
 const initialState: EpisodeListStateType = {
   currentPage: 0,

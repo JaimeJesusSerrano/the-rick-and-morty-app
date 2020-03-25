@@ -1,5 +1,5 @@
 import { all, takeLatest } from 'redux-saga/effects'
-import { ActionType } from '~Store/constants/episode/EpisodeList'
+import { ActionType } from '~Store/constants/episode/List'
 import { getEpisode } from '~Store/sagas/episode/EpisodeList'
 
 function* episodesSaga() {

@@ -4,7 +4,7 @@ import { get } from '~Api'
 import {
   ActionType,
   DispatchAction,
-} from '~Store/constants/episode/EpisodeList'
+} from '~Store/constants/episode/List'
 
 export function* getEpisode({ payload }: DispatchAction) {
   const { page: currentPage, name } = payload

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { episodeListReducer } from './EpisodeList'
-import { EpisodeListStateType } from '~Store/constants/episode/EpisodeList'
+import { EpisodeListStateType } from '~Store/constants/episode/List'
 
 interface EpisodeType {
   list: EpisodeListStateType

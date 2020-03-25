@@ -8,7 +8,7 @@ import { RootState } from '~Store/reducers'
 import { getEpisodeList } from '~Store/reducers/episode/EpisodeList'
 import ListLoader from '~Components/ListLoader'
 import NoResponseImg from '~Assets/img/noresponse.jpg'
-import { EpisodeListDispatcher } from '~Store/actions/episode/EpisodeList'
+import { EpisodeListDispatcher } from '~Store/actions/episode/List'
 import InfiniteScrollList from '~Components/InfiniteScrollList'
 
 const List = () => {

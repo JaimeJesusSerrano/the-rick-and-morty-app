@@ -23,4 +23,10 @@ Library that aims to make application side effects easier to manage, more effici
 Visual primitives for the component age.
 
 ### [Material-UI](https://material-ui.com/)
-React components for faster and easier web development. 
+React components for faster and easier web development.
+
+
+## Run test with
+```sh
+yarn test
+```

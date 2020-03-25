@@ -15,7 +15,7 @@ import { Character } from '~Api/types'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import CardContentItem from '~Screens/characters/components/CardContentItem'
 
-interface CardProps {
+export interface CardProps {
   character: Character
 }
 

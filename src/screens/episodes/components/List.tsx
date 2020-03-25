@@ -3,35 +3,36 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from './Card'
-import { Episode } from '../../../services/api/types'
+import { Episode } from '~Api/types'
 import { RootState } from '~Store/reducers'
 import { getEpisodeList } from '~Store/reducers/episode/List'
 import ListLoader from '~Components/ListLoader'
 import NoResponseImg from '~Assets/img/noresponse.jpg'
-import { EpisodeListDispatcher } from '~Store/actions/episode/List'
+import { fetchEpisodesPage } from '~Store/actions/episode/List'
 import InfiniteScrollList from '~Components/InfiniteScrollList'
 
 const List = () => {
   const dispatch = useDispatch()
-  const episodeDispatcher = new EpisodeListDispatcher(dispatch)
-  const episodeListState = useSelector((state: RootState) => state.episode.list)
+  const episodeListState = useSelector(
+    (state: RootState) => state.episode.list
+  )
   const {
+    criticalError,
     currentPage,
     loading,
     name,
     totalPages,
-    criticalError,
   } = episodeListState
   const episodes: Episode[] = getEpisodeList(episodeListState)
 
   const [hasMoreEpisodesToLoad, setHasMoreEpisodesToLoad] = useState(true)
 
   const loadMoreEpisodes = () => {
-    const newPage = (currentPage as number) + 1
+    const newPage = currentPage + 1
     if (newPage > totalPages) {
       setHasMoreEpisodesToLoad(false)
     } else if (!loading && hasMoreEpisodesToLoad) {
-      episodeDispatcher.fetchEpisodePage(newPage, name as string)
+      dispatch(fetchEpisodesPage(newPage, name ))
     }
   }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Card from '~Screens/characters/components/Card'
-import { character } from '../data'
+import { character } from '~Screens/characters/dataTest'
 
 jest.mock('uuid', () => {
   let value = 0

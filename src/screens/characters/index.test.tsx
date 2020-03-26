@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Characters from '~Screens/characters'
 import { TestContainer } from '~Test/utils'
-import { characterListInitialState } from './data'
+import { characterListInitialState } from '~Screens/characters/dataTest'
 
 jest.mock('uuid', () => {
   let value = 0

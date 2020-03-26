@@ -54,14 +54,14 @@ export const character: Character = {
   created: '2017-11-04T18:48:46.250Z',
 }
 
-interface characterListInitialStateType {
+interface CharacterListInitialStateType {
   character: {
     list: {
       pages: PagesType
     }
   }
 }
-export const characterListInitialState: characterListInitialStateType = {
+export const characterListInitialState: CharacterListInitialStateType = {
   character: {
     list: {
       pages: {

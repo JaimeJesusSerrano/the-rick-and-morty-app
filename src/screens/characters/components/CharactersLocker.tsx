@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 import { CardActionArea, CardMedia, Container } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { CharacterComparableInfo } from './Card'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
+import { RootState } from '~Store/reducers'
+import { StateType as  ComparatorStateType } from '~Store/constants/character/Comparator'
 
 type CharactersSelected =
   | [CharacterComparableInfo, CharacterComparableInfo]
@@ -29,8 +32,12 @@ const mortySelected: CharacterComparableInfo = {
 const testCharacters: CharactersSelected = [rickSelected, mortySelected]
 
 const CharactersLocker = (): JSX.Element => {
-  const fetchCharacterSelected: CharactersSelected = testCharacters
-  const charactersSelected = fetchCharacterSelected.map(
+
+  // useSelector
+  const fetchCharacterSelected =  useSelector(
+    (state: RootState) => state.character.comparator
+  )
+  const charactersSelected = fetchCharacterSelected.charactersSelected.map(
     (characterSelected: CharacterComparableInfo) => (
       <div key={uuidv4()}>
         <CardActionArea>

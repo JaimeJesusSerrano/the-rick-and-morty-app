@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
     jsx: true,
-    useJSXTextNode: true
+    useJSXTextNode: true,
   },
   env: {
     browser: true,
@@ -43,6 +43,12 @@ module.exports = {
   rules: {
     'react/display-name': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'import/no-extraneous-dependencies': [
+      "error",
+      {
+        "devDependencies": ["src/__test__/**"],
+      }
+    ],
     'import/prefer-default-export': 'off',
   },
 }

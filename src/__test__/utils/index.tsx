@@ -3,8 +3,10 @@ import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import NoSsr from '@material-ui/core/NoSsr'
-import { StylesProvider } from '@material-ui/core/styles'
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles'
+import {
+  StylesProvider,
+  ThemeProvider as MuiThemeProvider,
+} from '@material-ui/core/styles'
 import { ThemeProvider } from 'styled-components'
 import theme from '~Theme'
 

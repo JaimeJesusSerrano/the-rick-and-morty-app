@@ -50,7 +50,7 @@ export const locationListReducer = (
         totalPages: payload.info.pages,
       }
     default:
-      return initialState
+      return state
   }
 }
 

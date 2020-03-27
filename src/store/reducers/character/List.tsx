@@ -49,7 +49,7 @@ export const listReducer = (
         totalPages: action.payload.info.pages,
       }
     default:
-      return initialState
+      return state
   }
 }
 

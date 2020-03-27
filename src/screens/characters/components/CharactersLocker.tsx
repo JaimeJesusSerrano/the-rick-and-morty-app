@@ -31,7 +31,7 @@ const mortySelected: CharacterComparableInfo = {
 const testCharacters: CharactersSelected = [rickSelected, mortySelected]
 
 const CharactersLocker = (): JSX.Element => {
-  const fetchCharacterSelected =  useSelector(
+  const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
   )
   const charactersSelected = fetchCharacterSelected.charactersSelected.map(

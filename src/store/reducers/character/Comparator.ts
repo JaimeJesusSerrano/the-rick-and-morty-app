@@ -23,7 +23,7 @@ export const comparatorReducer = (
     case ActionType.COMPARATOR_CHARACTER_SELECTED_PUT_SUCCESS:
       return {
         ...state,
-        charactersSelected: [...state.charactersSelected, action.payload]
+        charactersSelected: [...state.charactersSelected, action.payload.character]
 
       }
     default:

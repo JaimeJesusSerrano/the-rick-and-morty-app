@@ -18,9 +18,13 @@ export interface StateType {
   charactersSelected: Character[]
 }
 
+interface PayloadType {
+  character: Character
+}
+
 export interface RequestType {
   criticalError?: boolean
   error?: boolean
-  payload: Character
+  payload: PayloadType
   type: string
 }

@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import {
   Card as MaterialUiCard,
   CardContent,
   CardActionArea,
   CardActions,
-  CardMedia,
   Button,
 } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
+import { sendCharacterSelected } from '~Store/actions/character/Comparator'
 import { Character } from '~Api/types'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import CardContentItem from '~Screens/characters/components/CardContentItem'
@@ -27,27 +29,14 @@ export type CharacterComparableInfo = {
   image: string
 }
 
-const getCardInformation = (
-  gender: string,
-  name: string,
-  species: string,
-  status: string,
-  image: string
-): CharacterComparableInfo => {
-  return {
-    name,
-    gender,
-    species,
-    status,
-    image,
-  }
-}
-
-const Card = ({
-  character: { gender, image, location, name, origin, species, status },
-}: CardProps) => {
+const Card = (
+  character: CardProps) => {
   const [isSelected, setIsSelected] = useState(false)
-  const CardComparatorSelector = (): JSX.Element => {
+   const {gender, image, location, name, origin, species, status } = character.character
+
+  const dispatch = useDispatch()
+
+  const CardComparatorSelector = (characterSelected: Character): JSX.Element => {
     return (
       <CardActions>
         <Button
@@ -56,7 +45,7 @@ const Card = ({
           onClick={() => {
             console.log(`send to comparator: ${name}`)
             console.log(
-              getCardInformation(name, gender, species, status, image)
+              dispatch(sendCharacterSelected(characterSelected))
             )
           }}
         >
@@ -77,7 +66,7 @@ const Card = ({
 
   return (
     <StyledCard>
-      {isSelected && CardComparatorSelector()}
+      {isSelected && CardComparatorSelector(character.character)}
       <CardActionArea
         onClick={() => {
           setIsSelected(!isSelected)

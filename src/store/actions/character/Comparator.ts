@@ -10,3 +10,11 @@ export const sendCharacterSelected = (character: Character) => {
   }
 }
 
+export const deleteCharacterSelected = (id: number) => {
+  return {
+    type: ActionType.COMPARATOR_CHARACTER_SELECTED_DEL_SUCCESS,
+    payload: {
+      id,
+    },
+  }
+}

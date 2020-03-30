@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
@@ -11,14 +12,44 @@ import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import CharactersLocker from '~Screens/characters/components/CharactersLocker'
+import { RootState } from '~Store/reducers'
+import { Character } from '~Api/types'
 
 const ExpansionPanelComparator = (): JSX.Element => {
   const [open, setOpen] = React.useState(false)
+  const fetchCharacterSelected = useSelector(
+    (state: RootState) => state.character.comparator
+  )
+
+
+
+  type CompareType = number | string
+
+
+  const distance = (compare: CompareType, compared: CompareType):number => compare === compared?1:0
+
+
+  const getHammingDistance = (charactersCompared: Character[]): number[] => {
+    const compareCharacter = charactersCompared[0]
+    const charactersBeingCompared = charactersCompared.slice(1);
+    const hammingDistance = charactersBeingCompared.map(
+      (character: Character) => (
+        distance(compareCharacter.name, character.name) +
+        distance(compareCharacter.location.name, character.location.name) +
+        distance(compareCharacter.gender, character.gender) +
+        distance(compareCharacter.status, character.status)
+      )
+    )
+    return hammingDistance
+  }
 
   const handleClose = () => {
     setOpen(false)
   }
   const handleToggle = () => {
+    const {charactersSelected} = fetchCharacterSelected
+
+    console.log(getHammingDistance(charactersSelected))
     setOpen(!open)
   }
 

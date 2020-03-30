@@ -1,13 +1,19 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
-import { CardActionArea, CardMedia, Container } from '@material-ui/core'
+import {
+  CardActionArea,
+  CardMedia,
+  Container,
+  ExpansionPanelDetails,
+} from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { CharacterComparableInfo } from './Card'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import { RootState } from '~Store/reducers'
 import { Character } from '~Api/types'
 import { deleteCharacterSelected } from '~Store/actions/character/Comparator'
+import BarChartComparator from '~Screens/characters/components/BarChartComparator'
 
 type CharactersSelected =
   | [CharacterComparableInfo, CharacterComparableInfo]
@@ -59,7 +65,12 @@ const CharactersLocker = (): JSX.Element => {
       </div>
     )
   )
-  return <Container>{charactersSelected}</Container>
+  return (
+    <Container>
+      {charactersSelected}
+      <BarChartComparator />
+    </Container>
+  )
 }
 
 export default CharactersLocker

@@ -1,6 +1,7 @@
 import {
   ActionType,
   RequestType,
+  DeleteType,
   StateType,
 } from '~Store/constants/character/Comparator'
 
@@ -13,6 +14,7 @@ export const comparatorReducer = (
   state: StateType = initialState,
   action: RequestType
 ): StateType => {
+
   switch (action.type) {
     case ActionType.COMPARATOR_CHARACTER_SELECTED_PUT_FAILED:
       return {
@@ -26,7 +28,12 @@ export const comparatorReducer = (
         charactersSelected: [...state.charactersSelected, action.payload.character]
 
       }
+    case ActionType.COMPARATOR_CHARACTER_SELECTED_DEL_SUCCESS:
+      return {
+        ...state,
+        charactersSelected: [...state.charactersSelected.filter((character)=> character.id!== action.payload.id)]
+      }
     default:
-      return initialState
+      return state
   }
 }

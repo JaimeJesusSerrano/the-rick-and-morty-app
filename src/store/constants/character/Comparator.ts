@@ -15,6 +15,7 @@ export interface StateType {
 
 interface PayloadType {
   character: Character
+  id?: number
 }
 
 export interface RequestType {
@@ -26,7 +27,9 @@ export interface RequestType {
 interface PayloadDeleteType{
   id: number
 }
+
 export interface DeleteType {
   error?: boolean
   payload: PayloadDeleteType
+  type: string
 }

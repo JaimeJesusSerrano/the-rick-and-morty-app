@@ -24,7 +24,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
 
 
   type CompareType = number | string
-
+  const {charactersSelected} = fetchCharacterSelected
 
   const distance = (compare: CompareType, compared: CompareType):number => compare === compared?1:0
 
@@ -46,8 +46,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
   const handleClose = () => {
     setOpen(false)
   }
-  const handleToggle = () => {
-    const {charactersSelected} = fetchCharacterSelected
+  const handleToggle = (characters: Character[]) => {
 
     console.log(getHammingDistance(charactersSelected))
     setOpen(!open)
@@ -75,7 +74,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
           size="small"
           color="primary"
           variant="outlined"
-          onClick={handleToggle}
+          onClick={()=>handleToggle(charactersSelected)}
         >
           Compare
         </Button>

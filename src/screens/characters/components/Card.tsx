@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   Card as MaterialUiCard,
@@ -12,41 +12,58 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
-import { sendCharacterSelected } from '~Store/actions/character/Comparator'
 import { Character } from '~Api/types'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import CardContentItem from '~Screens/characters/components/CardContentItem'
+import { sendCharacterSelected } from '~Store/actions/character/Comparator'
+import { RootState } from '~Store/reducers'
+import { isSelected as isCardSelected } from '~Store/reducers/character/Comparator'
 
 export interface CardProps {
   character: Character
+  textWhenNoSelected: string
+  textWhenSelected: string
 }
 
-export type CharacterComparableInfo = {
-  name: string
-  gender: string
-  species: string
-  status: string
-  image: string
-}
-
-const Card = (
-  character: CardProps) => {
-  const [isSelected, setIsSelected] = useState(false)
-   const {gender, image, location, name, origin, species, status } = character.character
+const Card = ({
+  character,
+  textWhenNoSelected,
+  textWhenSelected,
+}: CardProps) => {
+  const {
+    id,
+    gender,
+    image,
+    location,
+    name,
+    origin,
+    species,
+    status,
+  } = character
 
   const dispatch = useDispatch()
+  const comparatorData = useSelector(
+    (state: RootState) => state.character.comparator
+  )
+  const isSelected: boolean = isCardSelected(comparatorData, id)
+  const [isActionAreaOpened, setActionAreaOpened] = useState(false)
 
-  const CardComparatorSelector = (characterSelected: Character): JSX.Element => {
+  const CardComparatorSelector = () => {
     return (
       <CardActions>
         <Button
           size="small"
           color="primary"
           onClick={() => {
-              dispatch(sendCharacterSelected(characterSelected))
+            if (isSelected) {
+              // TODO remove from store when is selected and try to remove
+            } else {
+              dispatch(sendCharacterSelected(character))
+            }
           }}
         >
-          Send to comparator
+          {isSelected && textWhenSelected}
+          {!isSelected && textWhenNoSelected}
         </Button>
       </CardActions>
     )
@@ -62,11 +79,11 @@ const Card = (
   ]
 
   return (
-    <StyledCard>
-      {isSelected && CardComparatorSelector(character.character)}
+    <SCard>
+      {isActionAreaOpened && CardComparatorSelector()}
       <CardActionArea
         onClick={() => {
-          setIsSelected(!isSelected)
+          setActionAreaOpened(!isActionAreaOpened)
         }}
       >
         <LazyLoadImage
@@ -79,7 +96,7 @@ const Card = (
           width={200}
         />
       </CardActionArea>
-      <StyledCardContent>
+      <SCardContent>
         {cardContentItems.map(item => {
           return (
             <CardContentItem
@@ -89,17 +106,17 @@ const Card = (
             />
           )
         })}
-      </StyledCardContent>
-    </StyledCard>
+      </SCardContent>
+    </SCard>
   )
 }
 
-const StyledCard = styled(MaterialUiCard)`
+const SCard = styled(MaterialUiCard)`
   border-radius: 20px;
   line-height: 0;
 `
 
-const StyledCardContent = styled(CardContent)`
+const SCardContent = styled(CardContent)`
   &:last-child {
     padding: 10px;
   }

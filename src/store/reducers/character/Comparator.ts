@@ -4,6 +4,7 @@ import {
   DeleteType,
   StateType,
 } from '~Store/constants/character/Comparator'
+import {Character} from '~Api/types'
 
 const initialState: StateType = {
   error: false,
@@ -36,4 +37,11 @@ export const comparatorReducer = (
     default:
       return state
   }
+}
+
+export const isSelected = (state: StateType, id: number) => {
+  const result = state.charactersSelected.find((character: Character) => {
+    return character.id === id
+  })
+  return !!result
 }

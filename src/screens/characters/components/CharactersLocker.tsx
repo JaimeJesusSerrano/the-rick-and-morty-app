@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import {
   CardActionArea,
   CardMedia,
-  Container,
+  Container, Grid, Paper, Divider
 } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
@@ -56,8 +56,18 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
   )
   return (
     <Container>
-      {charactersSelected}
-      {JSON.stringify(data)!==JSON.stringify({})?<BarChartComparator values={data}/>:null}
+
+      <Grid item xs={12}>
+        <Paper>
+          {charactersSelected}
+        </Paper>
+      </Grid>
+      <Divider/>
+      <Grid item xs={12}>
+        <Paper >
+          {JSON.stringify(data)!==JSON.stringify({})?<BarChartComparator values={data}/>:null}
+        </Paper>
+      </Grid>
     </Container>
   )
 }

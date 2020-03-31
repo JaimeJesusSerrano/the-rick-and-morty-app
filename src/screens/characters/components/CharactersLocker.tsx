@@ -32,7 +32,6 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
     (state: RootState) => state.character.comparator
   )
   const dispatch = useDispatch()
-
   const charactersSelected = fetchCharacterSelected.charactersSelected.map(
     (characterSelected: Character) => (
       <div key={uuidv4()}>
@@ -58,7 +57,7 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
   return (
     <Container>
       {charactersSelected}
-      <BarChartComparator values={data} />
+      {JSON.stringify(data)!==JSON.stringify({})?<BarChartComparator values={data}/>:null}
     </Container>
   )
 }

@@ -48,7 +48,7 @@ const Card = ({
   const isSelected: boolean = isCardSelected(comparatorData, id)
   const [isActionAreaOpened, setActionAreaOpened] = useState(false)
 
-  const CardComparatorSelector = () => {
+  const ActionArea = () => {
     return (
       <CardActions>
         <Button
@@ -80,7 +80,7 @@ const Card = ({
 
   return (
     <SCard>
-      {isActionAreaOpened && CardComparatorSelector()}
+      {isActionAreaOpened && ActionArea()}
       <CardActionArea
         onClick={() => {
           setActionAreaOpened(!isActionAreaOpened)

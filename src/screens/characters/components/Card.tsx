@@ -43,10 +43,7 @@ const Card = (
           size="small"
           color="primary"
           onClick={() => {
-            console.log(`send to comparator: ${name}`)
-            console.log(
               dispatch(sendCharacterSelected(characterSelected))
-            )
           }}
         >
           Send to comparator

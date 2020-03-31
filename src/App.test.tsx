@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { shallow } from 'enzyme'
-import { By, Key, until } from 'selenium-webdriver'
+import {By, until} from 'selenium-webdriver'
 import { configureStore } from '~Store/config'
 import App from './App'
 import { seleniumDriver } from './setupTests'
@@ -22,10 +22,20 @@ test('[App] Provider is loaded correctly', () => {
 test('[App] Load correctly', async () => {
   try {
     await seleniumDriver.get('http://localhost:3000/')
-    await seleniumDriver.wait(until.titleIs('React App'), 10000)
-    await seleniumDriver.get('http://localhost:3000/characters')
-    await seleniumDriver.wait(until.titleIs('React App'), 10000)
+    await seleniumDriver.sleep(500)
+    await seleniumDriver.wait(until.elementLocated(By.css('#menu-screen-characters a')))
+    await seleniumDriver.findElement(By.css('#menu-screen-characters a')).click()
+
+    await seleniumDriver.sleep(500)
+    await seleniumDriver.wait(until.elementLocated(By.css('#menu-screen-episodes a')))
+    await seleniumDriver.findElement(By.css('#menu-screen-episodes a')).click()
+
+    await seleniumDriver.sleep(500)
+    await seleniumDriver.wait(until.elementLocated(By.css('#menu-screen-locations a')))
+    await seleniumDriver.findElement(By.css('#menu-screen-locations a')).click()
+
+    await seleniumDriver.sleep(500)
   } finally {
     await seleniumDriver.quit()
   }
-}, 30000)
+}, 60000)

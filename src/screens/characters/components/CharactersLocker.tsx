@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import {
   CardActionArea,
   CardMedia,
-  Container, Grid, Paper, Divider
+  Container, Grid, Paper, Divider, Typography, CardContent,
 } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
@@ -27,11 +27,14 @@ interface CharactersLockerProps {
   data: DataComparator
 }
 
+
+
 const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
   const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
   )
   const dispatch = useDispatch()
+
   const charactersSelected = fetchCharacterSelected.charactersSelected.map(
     (characterSelected: Character) => (
       <div key={uuidv4()}>
@@ -49,6 +52,13 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
               threshold={500}
               width={200}
             />
+            <CardContent>
+              {`Name : ${characterSelected.name} `}
+              {`Species : ${characterSelected.species} `}
+              {`Gender : ${characterSelected.gender}` }
+              {`Status : ${characterSelected.status} `}
+              {`Last location : ${characterSelected.location.name} `}
+            </CardContent>
           </CardMedia>
         </CardActionArea>
       </div>

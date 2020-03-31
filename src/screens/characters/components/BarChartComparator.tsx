@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Label,
 } from 'recharts'
 import { Container } from '@material-ui/core'
 
@@ -34,10 +35,18 @@ const BarChartComparator = ({values}:BarChartComparatorProps): JSX.Element => {
       >
         <CartesianGrid strokeDasharray="3 3"/>
         <XAxis dataKey="name"/>
-        <YAxis />
+        <YAxis domain={[0,4]}>
+        <Label
+          angle={270}
+          position="left"
+          style={{textAnchor: 'middle'}}
+        >
+          Maximum Similarity(4)
+        </Label>
+        </YAxis>
         <Tooltip/>
         <Legend  />
-        <Bar dataKey="similarity" fill="#82ca9d" name="Level Similarity"/>
+        <Bar dataKey="similarity" fill="#82ca9d" name="Similarity Level"/>
       </ BarChart>
       </Container>
   )

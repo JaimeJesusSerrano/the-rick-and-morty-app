@@ -59,12 +59,15 @@ const ExpansionPanelComparator = (): JSX.Element => {
   const handleClose = () => {
     setTimeout(()=>{
       setOpen(false)
-    },1000)
+    },700)
   }
   const handleToggle = (characters: Character[]) => {
-    setOpen(!open)
-    setChartData(createData(characters))
-    handleClose()
+    if(characters.length>1) {
+      setOpen(!open)
+      setChartData(createData(characters))
+      handleClose()
+    }
+
   }
 
   return (

@@ -4,7 +4,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { ExpansionPanelDetails, ExpansionPanelActions} from '@material-ui/core'
+import { ExpansionPanelActions, ExpansionPanelDetails } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import Divider from '@material-ui/core/Divider'
@@ -21,34 +21,28 @@ const ExpansionPanelComparator = (): JSX.Element => {
     (state: RootState) => state.character.comparator
   )
 
-
-
   type CompareType = number | string
-  const {charactersSelected} = fetchCharacterSelected
+  const { charactersSelected } = fetchCharacterSelected
 
-  const distance = (compare: CompareType, compared: CompareType):number => compare === compared?1:0
-
+  const distance = (compare: CompareType, compared: CompareType): number =>
+    compare === compared ? 1 : 0
 
   const getHammingDistance = (charactersCompared: Character[]): number[] => {
     const compareCharacter = charactersCompared[0]
-    const charactersBeingCompared = charactersCompared.slice(1);
-    const hammingDistance = charactersBeingCompared.map(
-      (character: Character) => (
+    const charactersBeingCompared = charactersCompared.slice(1)
+    return charactersBeingCompared.map(
+      (character: Character) =>
         distance(compareCharacter.name, character.name) +
         distance(compareCharacter.location.name, character.location.name) +
         distance(compareCharacter.gender, character.gender) +
         distance(compareCharacter.status, character.status)
-      )
     )
-    return hammingDistance
   }
 
   const handleClose = () => {
     setOpen(false)
   }
   const handleToggle = (characters: Character[]) => {
-
-    console.log(getHammingDistance(charactersSelected))
     setOpen(!open)
     console.log(getHammingDistance(characters))
   }
@@ -64,7 +58,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
       </ExpansionPanelSummary>
       <Divider />
       <ExpansionPanelDetails>
-        <CharactersLocker/>
+        <CharactersLocker />
       </ExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions>
@@ -75,7 +69,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
           size="small"
           color="primary"
           variant="outlined"
-          onClick={()=>handleToggle(charactersSelected)}
+          onClick={() => handleToggle(charactersSelected)}
         >
           Compare
         </Button>

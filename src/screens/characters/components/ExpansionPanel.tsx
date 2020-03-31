@@ -44,7 +44,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
     const dataValues = charactersBeingCompared.map((character: Character) => ({
       name: character.name,
       similarity:
-        distance(compareCharacter.name, character.name) +
+        distance(compareCharacter.species, character.species) +
         distance(compareCharacter.location.name, character.location.name) +
         distance(compareCharacter.gender, character.gender) +
         distance(compareCharacter.status, character.status),

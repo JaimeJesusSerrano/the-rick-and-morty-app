@@ -5,39 +5,29 @@ import {
   CardActionArea,
   CardMedia,
   Container,
-  ExpansionPanelDetails,
 } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { CharacterComparableInfo } from './Card'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import { RootState } from '~Store/reducers'
 import { Character } from '~Api/types'
 import { deleteCharacterSelected } from '~Store/actions/character/Comparator'
 import BarChartComparator from '~Screens/characters/components/BarChartComparator'
 
-type CharactersSelected =
-  | [CharacterComparableInfo, CharacterComparableInfo]
-  | [CharacterComparableInfo]
-  | []
-
-const rickSelected: CharacterComparableInfo = {
-  name: 'rick',
-  gender: 'male',
-  species: 'human',
-  status: 'alive',
-  image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-}
-const mortySelected: CharacterComparableInfo = {
-  name: 'morty',
-  gender: 'male',
-  species: 'human',
-  status: 'dead',
-  image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+type DataValues = {
+  name: string
+  similarity: number
 }
 
-const testCharacters: CharactersSelected = [rickSelected, mortySelected]
+export type DataComparator = {
+  characterCompared: string
+  data: DataValues[]
+}
 
-const CharactersLocker = (): JSX.Element => {
+interface CharactersLockerProps {
+  data: DataComparator
+}
+
+const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
   const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
   )
@@ -68,7 +58,7 @@ const CharactersLocker = (): JSX.Element => {
   return (
     <Container>
       {charactersSelected}
-      <BarChartComparator />
+      <BarChartComparator values={data} />
     </Container>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -10,13 +10,24 @@ import styled from 'styled-components'
 import Divider from '@material-ui/core/Divider'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
 import CharactersLocker from '~Screens/characters/components/CharactersLocker'
 import { RootState } from '~Store/reducers'
 import { Character } from '~Api/types'
 
+type DataValues = {
+  name: string
+  similarity: number
+}
+
+export type DataComparator = {
+  characterCompared: string
+  data: DataValues[]
+}
+
 const ExpansionPanelComparator = (): JSX.Element => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const [chartData, setChartData] = useState({} as DataComparator)
+
   const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
   )
@@ -27,24 +38,33 @@ const ExpansionPanelComparator = (): JSX.Element => {
   const distance = (compare: CompareType, compared: CompareType): number =>
     compare === compared ? 1 : 0
 
-  const getHammingDistance = (charactersCompared: Character[]): number[] => {
-    const compareCharacter = charactersCompared[0]
-    const charactersBeingCompared = charactersCompared.slice(1)
-    return charactersBeingCompared.map(
-      (character: Character) =>
+  const createData = (characters: Character[]): DataComparator => {
+    const compareCharacter = characters[0]
+    const charactersBeingCompared = characters.slice(1)
+    const dataValues = charactersBeingCompared.map((character: Character) => ({
+      name: character.name,
+      similarity:
         distance(compareCharacter.name, character.name) +
         distance(compareCharacter.location.name, character.location.name) +
         distance(compareCharacter.gender, character.gender) +
-        distance(compareCharacter.status, character.status)
-    )
+        distance(compareCharacter.status, character.status),
+    }))
+
+    return {
+      characterCompared: compareCharacter.name,
+      data: dataValues
+    }
   }
 
   const handleClose = () => {
-    setOpen(false)
+    setTimeout(()=>{
+      setOpen(false)
+    },1000)
   }
   const handleToggle = (characters: Character[]) => {
     setOpen(!open)
-    console.log(getHammingDistance(characters))
+    setChartData(createData(characters))
+    handleClose()
   }
 
   return (
@@ -58,7 +78,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
       </ExpansionPanelSummary>
       <Divider />
       <ExpansionPanelDetails>
-        <CharactersLocker />
+        <CharactersLocker data={chartData} />
       </ExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions>

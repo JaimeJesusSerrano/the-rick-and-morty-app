@@ -69,15 +69,17 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
     <Container>
 
       <Grid item xs={12}>
-        <Paper>
+        <SPaper>
           {charactersSelected}
-        </Paper>
+        </SPaper>
       </Grid>
-      <Divider/>
+
       <Grid item xs={12}>
-        <Paper >
-          {JSON.stringify(data)!==JSON.stringify({})?<BarChartComparator values={data}/>:null}
-        </Paper>
+          {JSON.stringify(data)!==JSON.stringify({})?
+            <SPaper >
+            <BarChartComparator values={data}/>
+            </SPaper>
+            :null}
       </Grid>
     </Container>
   )

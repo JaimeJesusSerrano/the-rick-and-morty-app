@@ -13,6 +13,7 @@
           "~Routes": "./src/routes",
           "~Screens": "./src/screens",
           "~Store": "./src/store",
+          "~Test": "./src/__test__",
           "~Theme": "./src/theme",
           "~Utils": "./src/utils"
         }

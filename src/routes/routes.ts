@@ -1,6 +1,5 @@
 import { RouteProps } from 'react-router-dom'
 import Characters from '~Screens/characters'
-// /import/no-unresolved
 import Episodes from '~Screens/episodes'
 import Home from '~Screens/Home'
 import Locations from '~Screens/locations'

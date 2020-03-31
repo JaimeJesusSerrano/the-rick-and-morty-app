@@ -25,27 +25,27 @@ const Menu = () => {
             <Logo />
           </Grid>
           <Grid item xs={6} />
-          <Grid item xs>
+          <Grid id="menu-screen-characters" item xs>
             <Section
-              to={routes.characters.path}
               path={location.pathname}
               text="Characters"
+              to={routes.characters.path}
               variant="h6"
             />
           </Grid>
-          <Grid item xs>
+          <Grid id="menu-screen-episodes" item xs>
             <Section
-              to={routes.episodes.path}
               path={location.pathname}
               text="Episodes"
+              to={routes.episodes.path}
               variant="h6"
             />
           </Grid>
-          <Grid item xs>
+          <Grid id="menu-screen-locations" item xs>
             <Section
-              to={routes.locations.path}
               path={location.pathname}
               text="Locations"
+              to={routes.locations.path}
               variant="h6"
             />
           </Grid>

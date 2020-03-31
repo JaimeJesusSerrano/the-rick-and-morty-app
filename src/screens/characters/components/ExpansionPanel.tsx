@@ -50,6 +50,7 @@ const ExpansionPanelComparator = (): JSX.Element => {
 
     console.log(getHammingDistance(charactersSelected))
     setOpen(!open)
+    console.log(getHammingDistance(characters))
   }
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
+import styled from 'styled-components'
 import {
   CardActionArea,
   CardMedia,
@@ -81,5 +82,13 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
     </Container>
   )
 }
+
+const SPaper = styled(Paper)`
+margin-top: 20px;
+padding: 2px;
+display: flex;
+flex-direction: column;
+`
+
 
 export default CharactersLocker

@@ -91,7 +91,7 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
       </Grid>
 
       <Grid item xs={12}>
-        {fetchCharacterSelected.charactersSelected.length > 1 &&
+        {fetchCharacterSelected.charactersSelected.length > 0 &&
         JSON.stringify(data) !== JSON.stringify({}) ? (
           <SPaper>
             <BarChartComparator values={data} />

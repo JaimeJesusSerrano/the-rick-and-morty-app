@@ -83,9 +83,11 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
   return (
     <Container>
       <Grid item xs={12}>
+        <SPaper>
         {fetchCharacterSelected.charactersSelected.length > 0 ? (
-          <SPaper>{charactersSelected}</SPaper>
+          charactersSelected
         ) : null}
+        </SPaper>
       </Grid>
 
       <Grid item xs={12}>
@@ -102,21 +104,19 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
 
 const SPaper = styled(Paper)`
   margin-top: 20px;
-  padding: 2px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
 
 `
-export const SCard = styled(MaterialUiCard)`
+const SCard = styled(MaterialUiCard)`
   margin-top: 10px;
   border-radius: 20px;
   line-height: 0;
   display: flex;
   flex-direction: column;
-
 `
-
-export const SCardContent = styled(CardContent)`
+const SCardContent = styled(CardContent)`
   &:last-child {
     padding: 10px;
   }

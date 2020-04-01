@@ -105,23 +105,20 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
 const SPaper = styled(Paper)`
   margin-top: 20px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
 
 `
 const SCard = styled(MaterialUiCard)`
   margin-top: 10px;
   border-radius: 20px;
   line-height: 0;
-  display: flex;
-  flex-direction: column;
+  max-width: 200px;
+
 `
 const SCardContent = styled(CardContent)`
   &:last-child {
     padding: 10px;
   }
   background-color: ${({ theme }) => theme.palette.secondary.main};
-  flex: 1 0 auto;
   padding: 10px;
 `
 

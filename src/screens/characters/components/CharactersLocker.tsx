@@ -5,7 +5,10 @@ import styled from 'styled-components'
 import {
   CardActionArea,
   CardMedia,
-  Container, Grid, Paper, Divider, Typography, CardContent,
+  Container,
+  Grid,
+  Paper,
+  CardContent,
 } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
@@ -28,9 +31,7 @@ interface CharactersLockerProps {
   data: DataComparator
 }
 
-
-
-const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
+const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
   const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
   )
@@ -56,7 +57,7 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
             <CardContent>
               {`Name : ${characterSelected.name} `}
               {`Species : ${characterSelected.species} `}
-              {`Gender : ${characterSelected.gender}` }
+              {`Gender : ${characterSelected.gender} `}
               {`Status : ${characterSelected.status} `}
               {`Last location : ${characterSelected.location.name} `}
             </CardContent>
@@ -67,11 +68,10 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
   )
   return (
     <Container>
-
       <Grid item xs={12}>
-        {fetchCharacterSelected.charactersSelected.length > 0?
-        <SPaper>{charactersSelected}</SPaper>:null
-        }
+        {fetchCharacterSelected.charactersSelected.length > 0 ? (
+          <SPaper>{charactersSelected}</SPaper>
+        ) : null}
       </Grid>
 
       <Grid item xs={12}>
@@ -87,11 +87,10 @@ const CharactersLocker = ({data}:CharactersLockerProps):JSX.Element => {
 }
 
 const SPaper = styled(Paper)`
-margin-top: 20px;
-padding: 2px;
-display: flex;
-flex-direction: column;
+  margin-top: 20px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
 `
-
 
 export default CharactersLocker

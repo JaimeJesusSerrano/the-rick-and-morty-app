@@ -68,7 +68,11 @@ const List = () => {
         rows={1}
         style={{ width: 200 }}
       >
-        <Card character={character} />
+        <Card
+          character={character}
+          textWhenNoSelected="Add it to comparator"
+          textWhenSelected="Remove it from comparator"
+        />
       </StyledGridListTile>
     ))
 

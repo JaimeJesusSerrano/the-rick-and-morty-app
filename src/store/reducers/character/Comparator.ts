@@ -34,6 +34,10 @@ export const comparatorReducer = (
         ...state,
         charactersSelected: [...state.charactersSelected.filter((character)=> character.id!== action.payload.id)]
       }
+    case ActionType.COMPARATOR_CHARACTER_SELECTED_RESET_SUCCESS:
+      if(state !== initialState)
+        return initialState
+      return state
     default:
       return state
   }

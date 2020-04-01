@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Character } from '~Api/types'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
 import CardContentItem from '~Screens/characters/components/CardContentItem'
-import { sendCharacterSelected } from '~Store/actions/character/Comparator'
+import { deleteCharacterSelected, sendCharacterSelected } from '~Store/actions/character/Comparator'
 import { RootState } from '~Store/reducers'
 import { isSelected as isCardSelected } from '~Store/reducers/character/Comparator'
 
@@ -56,7 +56,7 @@ const Card = ({
           color="primary"
           onClick={() => {
             if (isSelected) {
-              // TODO remove from store when is selected and try to remove
+              dispatch(deleteCharacterSelected(id))
             } else {
               dispatch(sendCharacterSelected(character))
             }

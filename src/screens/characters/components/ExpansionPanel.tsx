@@ -74,9 +74,8 @@ const ExpansionPanelComparator = (): JSX.Element => {
   }
 
   return (
-    <ExpansionPanel>
+    <ExpansionPanel expanded={charactersSelected.length>0} disabled={charactersSelected.length<1} >
       <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >

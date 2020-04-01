@@ -18,3 +18,12 @@ export const deleteCharacterSelected = (id: number) => {
     },
   }
 }
+
+export const resetCharacterSelected = () => {
+  return {
+    type: ActionType.COMPARATOR_CHARACTER_SELECTED_RESET_SUCCESS,
+    payload: {
+
+    },
+  }
+}

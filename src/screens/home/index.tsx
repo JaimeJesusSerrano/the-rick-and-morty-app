@@ -3,7 +3,7 @@ import { Grid, Link } from '@material-ui/core'
 import { useLocation } from 'react-router-dom'
 import { PaperCard, PaperCardType } from './components/PaperCard'
 
-export default () => {
+const Home = () => {
   return (
     <Grid container>
       <Grid item xs={12} sm={12} md={6} lg={4}>
@@ -24,3 +24,5 @@ export default () => {
     </Grid>
   )
 }
+
+export default Home

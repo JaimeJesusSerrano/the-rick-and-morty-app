@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
@@ -13,6 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import CharactersLocker from '~Screens/characters/components/CharactersLocker'
 import { RootState } from '~Store/reducers'
 import { Character } from '~Api/types'
+import { resetCharacterSelected } from '~Store/actions/character/Comparator'
 
 type DataValues = {
   name: string
@@ -27,6 +28,8 @@ export type DataComparator = {
 const ExpansionPanelComparator = (): JSX.Element => {
   const [open, setOpen] = useState(false)
   const [chartData, setChartData] = useState({} as DataComparator)
+  const dispatch = useDispatch()
+
 
   const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
@@ -85,7 +88,8 @@ const ExpansionPanelComparator = (): JSX.Element => {
       </ExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions>
-        <Button size="small" variant="outlined">
+        <Button size="small" variant="outlined"
+        onClick={()=>dispatch(resetCharacterSelected())}>
           Cancel
         </Button>
         <Button

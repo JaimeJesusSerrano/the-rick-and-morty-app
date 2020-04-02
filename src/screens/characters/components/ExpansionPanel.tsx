@@ -82,9 +82,9 @@ const ExpansionPanelComparator = (): JSX.Element => {
         <Typography> Comparator</Typography>
       </ExpansionPanelSummary>
       <Divider />
-      <ExpansionPanelDetails>
+      <SExpansionPanelDetails>
         <CharactersLocker data={chartData} />
-      </ExpansionPanelDetails>
+      </SExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions>
         <Button size="small" variant="outlined"
@@ -107,8 +107,8 @@ const ExpansionPanelComparator = (): JSX.Element => {
   )
 }
 
-const SExpansionPanelComparator = styled(ExpansionPanelComparator)`
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+const SExpansionPanelDetails = styled(ExpansionPanelDetails)`
+  justify-content: center;
 `
 const SBackdrop = styled(Backdrop)`
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};

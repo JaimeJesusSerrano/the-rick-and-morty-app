@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Sidebar from '~Components/layout/Sidebar'
 import Breadcrumbs from './Breadcrumbs'
 import { Footer } from './footer'
-import Menu from './menu'
+import Menu from './Menu'
 
 interface LayoutProps {
   children: React.ReactNode

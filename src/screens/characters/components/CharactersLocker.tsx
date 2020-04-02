@@ -53,8 +53,8 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
               dispatch(deleteCharacterSelected(characterSelected.id))
             }}
           >
-            <CardMedia>
-              <LazyLoadImage
+            <SCardMedia>
+              <SLazyLoadImage
                 alt={characterSelected.name}
                 height={200}
                 placeholderSrc={UnknownIcon}
@@ -62,7 +62,7 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
                 threshold={500}
                 width={200}
               />
-            </CardMedia>
+            </SCardMedia>
             <SCardContent>
               {cardContentItems.map(item => {
                 return (
@@ -105,17 +105,27 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
 const SCardActionArea = styled(CardActionArea)`
 display:flex;
 flex-direction: row;
+background-color: ${({ theme }) => theme.palette.secondary.main};
+
 `
 
 const SPaper = styled(Paper)`
   margin-top: 20px;
   padding: 20px;
-
 `
 const SCard = styled(MaterialUiCard)`
   margin-top: 10px;
   border-radius: 20px;
   line-height: 0;
+`
+const SCardMedia = styled(CardMedia)`
+padding: 10px;
+justify-content: center;
+display: flex;
+`
+
+const SLazyLoadImage = styled(LazyLoadImage) `
+border-radius: 20px;
 `
 const SCardContent = styled(CardContent)`
   &:last-child {

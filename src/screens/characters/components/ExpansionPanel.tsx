@@ -35,8 +35,14 @@ const ExpansionPanelComparator = (): JSX.Element => {
     (state: RootState) => state.character.comparator
   )
 
+
   type CompareType = number | string
   const { charactersSelected } = fetchCharacterSelected
+
+  const resetChart = ():void => {
+      setChartData({} as DataComparator)
+  }
+
 
   const distance = (compare: CompareType, compared: CompareType): number =>
     compare === compared ? 1 : 0
@@ -88,7 +94,9 @@ const ExpansionPanelComparator = (): JSX.Element => {
       <Divider />
       <ExpansionPanelActions>
         <Button size="small" variant="outlined"
-        onClick={()=>dispatch(resetCharacterSelected())}>
+        onClick={()=>{dispatch(resetCharacterSelected())
+            resetChart()}}
+        >
           Cancel
         </Button>
         <Button

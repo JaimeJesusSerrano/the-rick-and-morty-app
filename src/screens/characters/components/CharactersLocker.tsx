@@ -48,7 +48,7 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
       ]
       return (
         <SCard key={uuidv4()}>
-          <CardActionArea
+          <SCardActionArea
             onClick={() => {
               dispatch(deleteCharacterSelected(characterSelected.id))
             }}
@@ -74,7 +74,7 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
                 )
               })}
             </SCardContent>
-          </CardActionArea>
+          </SCardActionArea>
         </SCard>
       )
     }
@@ -102,6 +102,11 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
   )
 }
 
+const SCardActionArea = styled(CardActionArea)`
+display:flex;
+flex-direction: row;
+`
+
 const SPaper = styled(Paper)`
   margin-top: 20px;
   padding: 20px;
@@ -111,8 +116,6 @@ const SCard = styled(MaterialUiCard)`
   margin-top: 10px;
   border-radius: 20px;
   line-height: 0;
-  max-width: 200px;
-
 `
 const SCardContent = styled(CardContent)`
   &:last-child {

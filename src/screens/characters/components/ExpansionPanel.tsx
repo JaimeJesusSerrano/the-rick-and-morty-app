@@ -30,19 +30,16 @@ const ExpansionPanelComparator = (): JSX.Element => {
   const [chartData, setChartData] = useState({} as DataComparator)
   const dispatch = useDispatch()
 
-
   const fetchCharacterSelected = useSelector(
     (state: RootState) => state.character.comparator
   )
 
-
   type CompareType = number | string
   const { charactersSelected } = fetchCharacterSelected
 
-  const resetChart = ():void => {
-      setChartData({} as DataComparator)
+  const resetChart = (): void => {
+    setChartData({} as DataComparator)
   }
-
 
   const distance = (compare: CompareType, compared: CompareType): number =>
     compare === compared ? 1 : 0
@@ -61,26 +58,28 @@ const ExpansionPanelComparator = (): JSX.Element => {
 
     return {
       characterCompared: compareCharacter.name,
-      data: dataValues
+      data: dataValues,
     }
   }
 
   const handleClose = () => {
-    setTimeout(()=>{
+    setTimeout(() => {
       setOpen(false)
-    },700)
+    }, 700)
   }
   const handleToggle = (characters: Character[]) => {
-    if(characters.length>1) {
+    if (characters.length > 1) {
       setOpen(!open)
       setChartData(createData(characters))
       handleClose()
     }
-
   }
 
   return (
-    <ExpansionPanel expanded={charactersSelected.length>0} disabled={charactersSelected.length<1} >
+    <ExpansionPanel
+      expanded={charactersSelected.length > 0}
+      disabled={charactersSelected.length < 1}
+    >
       <ExpansionPanelSummary
         aria-controls="panel1a-content"
         id="panel1a-header"
@@ -93,9 +92,13 @@ const ExpansionPanelComparator = (): JSX.Element => {
       </SExpansionPanelDetails>
       <Divider />
       <ExpansionPanelActions>
-        <Button size="small" variant="outlined"
-        onClick={()=>{dispatch(resetCharacterSelected())
-            resetChart()}}
+        <Button
+          size="small"
+          variant="outlined"
+          onClick={() => {
+            dispatch(resetCharacterSelected())
+            resetChart()
+          }}
         >
           Cancel
         </Button>

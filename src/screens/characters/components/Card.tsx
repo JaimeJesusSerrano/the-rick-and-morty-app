@@ -50,7 +50,7 @@ const Card = ({
 
   const ActionArea = () => {
     return (
-      <CardActions>
+      <SCardActions>
         <Button
           size="small"
           color="primary"
@@ -65,7 +65,7 @@ const Card = ({
           {isSelected && textWhenSelected}
           {!isSelected && textWhenNoSelected}
         </Button>
-      </CardActions>
+      </SCardActions>
     )
   }
 
@@ -114,6 +114,10 @@ const Card = ({
 const SCard = styled(MaterialUiCard)`
   border-radius: 20px;
   line-height: 0;
+`
+
+const SCardActions = styled(CardActions)`
+  background-color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const SCardContent = styled(CardContent)`

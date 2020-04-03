@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as Title } from '~Assets/img/episodes_title.svg'
 import { fetchEpisodesSearch } from '~Store/actions/episode/List'
-import Comparator from './components/Comparator'
 import List from './components/List'
 import SearchBar from './components/SearchBar'
 
@@ -21,9 +20,6 @@ const Episodes = () => {
             dispatch(fetchEpisodesSearch(1, debouncedSearchValue))
           }
         />
-      </Grid>
-      <Grid item xs={12}>
-        <Comparator />
       </Grid>
       <Grid item xs={12}>
         <List />

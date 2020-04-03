@@ -23,16 +23,16 @@ test('[App] Load correctly', async () => {
   try {
     await seleniumDriver.get('http://localhost:3000/')
     await seleniumDriver.sleep(500)
-    await seleniumDriver.wait(until.elementLocated(By.css('#menu-screen-characters a')))
-    await seleniumDriver.findElement(By.css('#menu-screen-characters a')).click()
+    await seleniumDriver.wait(until.elementLocated(By.css('#Menu-screen-characters a')))
+    await seleniumDriver.findElement(By.css('#Menu-screen-characters a')).click()
 
     await seleniumDriver.sleep(500)
-    await seleniumDriver.wait(until.elementLocated(By.css('#menu-screen-episodes a')))
-    await seleniumDriver.findElement(By.css('#menu-screen-episodes a')).click()
+    await seleniumDriver.wait(until.elementLocated(By.css('#Menu-screen-episodes a')))
+    await seleniumDriver.findElement(By.css('#Menu-screen-episodes a')).click()
 
     await seleniumDriver.sleep(500)
-    await seleniumDriver.wait(until.elementLocated(By.css('#menu-screen-locations a')))
-    await seleniumDriver.findElement(By.css('#menu-screen-locations a')).click()
+    await seleniumDriver.wait(until.elementLocated(By.css('#Menu-screen-locations a')))
+    await seleniumDriver.findElement(By.css('#Menu-screen-locations a')).click()
 
     await seleniumDriver.sleep(500)
   } finally {

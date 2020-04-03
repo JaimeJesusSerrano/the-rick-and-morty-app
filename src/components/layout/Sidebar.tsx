@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
-import { useIdle } from "@react-corekit/use-idle";
+import { useIdle } from "@react-corekit/use-idle"
 
 // Images import
 import EvilMortyImg from '~Assets/img/evilmorty.jpeg'

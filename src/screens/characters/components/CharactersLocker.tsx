@@ -7,7 +7,8 @@ import {
   CardMedia,
   Grid,
   Paper,
-  CardContent, Card as MaterialUiCard,
+  CardContent,
+  Card as MaterialUiCard,
 } from '@material-ui/core'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import UnknownIcon from '~Assets/img/unknown.jpeg'
@@ -82,17 +83,16 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
 
   return (
     <Container>
-      <Grid item xs={12}>
-        <SPaper>
-        {fetchCharacterSelected.charactersSelected.length > 0 ? (
-          charactersSelected
-        ) : null}
-        </SPaper>
-      </Grid>
+      <SGrid item xs={12}>
+        <CardPaper>
+          {fetchCharacterSelected.charactersSelected.length > 0
+            ? charactersSelected
+            : null}
+        </CardPaper>
+      </SGrid>
 
       <Grid item xs={12}>
-        {fetchCharacterSelected.charactersSelected.length > 0 &&
-        JSON.stringify(data) !== JSON.stringify({}) ? (
+        {JSON.stringify(data) !== JSON.stringify({}) ? (
           <SPaper>
             <BarChartComparator values={data} />
           </SPaper>
@@ -103,15 +103,25 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
 }
 
 const SCardActionArea = styled(CardActionArea)`
-display:flex;
-flex-direction: row;
-background-color: ${({ theme }) => theme.palette.secondary.main};
-
+  display: flex;
+  flex-direction: row;
+  background-color: ${({ theme }) => theme.palette.secondary.main};
+`
+const SGrid = styled(Grid)`
+  justify-content: center;
+  display: flex;
 `
 
 const SPaper = styled(Paper)`
   margin-top: 20px;
   padding: 20px;
+`
+const CardPaper = styled(Paper)`
+  margin-top: 20px;
+  padding: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
 `
 const SCard = styled(MaterialUiCard)`
   margin-top: 10px;
@@ -119,13 +129,12 @@ const SCard = styled(MaterialUiCard)`
   line-height: 0;
 `
 const SCardMedia = styled(CardMedia)`
-padding: 10px;
-justify-content: center;
-display: flex;
+  padding: 10px;
+  justify-content: center;
 `
 
-const SLazyLoadImage = styled(LazyLoadImage) `
-border-radius: 20px;
+const SLazyLoadImage = styled(LazyLoadImage)`
+  border-radius: 20px;
 `
 const SCardContent = styled(CardContent)`
   &:last-child {
@@ -136,7 +145,7 @@ const SCardContent = styled(CardContent)`
 `
 
 const Container = styled.div`
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 `
 
 export default CharactersLocker

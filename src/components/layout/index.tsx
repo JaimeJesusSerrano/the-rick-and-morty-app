@@ -37,19 +37,24 @@ const Layout = ({ children }: LayoutProps) => (
 
     <Container container direction="column">
       <GridBreadcrumb container>
-        <Breadcrumbs />
+        <Grid item md={1}/>
+        <Grid item xs={12} md={10}>
+          <Breadcrumbs />
+        </Grid>
+        <Grid item md={1} />
       </GridBreadcrumb>
 
       <ChildrenContainer container>
-        <Grid item xs={1} />
-        <Grid item xs={7}>
+        <Grid item xs={1} md={1} />
+        <Grid item xs={10} md={7}>
           {children}
         </Grid>
-        <Grid item xs={1} />
-        <Grid item xs={2}>
+        <Grid item xs={1} md={1} />
+        <Grid item xs={1} md="auto" />
+        <Grid item xs={10} md={2}>
           <Sidebar />
         </Grid>
-        <Grid item xs={1} />
+        <Grid item md={1}/>
       </ChildrenContainer>
 
         <Footer />

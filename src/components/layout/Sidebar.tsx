@@ -9,7 +9,7 @@ import GoodMortyImg from '~Assets/img/goodmorty.jpeg'
 
 const StyledCard = styled(Card)`
   /* background-color: ${({ theme }) => theme.palette.primary.light}; */
-  margin-top: 10px;
+  margin: 10px 5px;
   min-height: 140px;
 `
 

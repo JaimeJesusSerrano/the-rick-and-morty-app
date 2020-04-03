@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 const GridBreadcrumb = styled(Grid)`
-  background-color: ${({ theme }) => theme.palette.primary.light};
+  background-color: white;
   padding: 10px 15px 5px 15px;
 `
 
@@ -22,7 +22,7 @@ const Container = styled(Grid)`
 
 const ChildrenContainer = styled(Grid)`
   flex: 1;
-  padding: 5px 15px 5px 15px;
+  padding: 10px 15px 5px 15px;
 `
 
 const SContainer = styled.div`
@@ -46,7 +46,7 @@ const Layout = ({ children }: LayoutProps) => (
 
       <ChildrenContainer container>
         <Grid item xs={1} md={1} />
-        <Grid item xs={10} md={7}>
+        <Grid item xs={10} md={7} style={{paddingTop: 5}}>
           {children}
         </Grid>
         <Grid item xs={1} md={1} />

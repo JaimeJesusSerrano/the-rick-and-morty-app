@@ -32,10 +32,10 @@ const BarChartComparator = ({
   return (
     <Container>
       <BarChart
-        width={600}
-        height={300}
         data={values.data}
+        height={300}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        width={600}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -46,7 +46,11 @@ const BarChartComparator = ({
         </YAxis>
         <Tooltip />
         <Legend />
-        <Bar dataKey="similarity" fill={theme.palette.primary.main} name="Similarity Level"/>
+        <Bar
+          dataKey="similarity"
+          fill={theme.palette.primary.main}
+          name="Similarity Level"
+        />
       </BarChart>
     </Container>
   )

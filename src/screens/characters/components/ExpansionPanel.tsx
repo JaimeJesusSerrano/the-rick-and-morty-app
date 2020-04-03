@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { ExpansionPanelActions, ExpansionPanelDetails } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
@@ -45,9 +44,8 @@ const ExpansionPanelComparator = (): JSX.Element => {
     compare === compared ? 1 : 0
 
   useEffect(() => {
-      resetChart()
-  },[charactersSelected])
-
+    resetChart()
+  }, [charactersSelected])
 
   const createData = (characters: Character[]): DataComparator => {
     const compareCharacter = characters[0]
@@ -82,8 +80,8 @@ const ExpansionPanelComparator = (): JSX.Element => {
 
   return (
     <ExpansionPanel
-      expanded={charactersSelected.length > 0}
       disabled={charactersSelected.length < 1}
+      expanded={charactersSelected.length > 0}
     >
       <ExpansionPanelSummary
         aria-controls="panel1a-content"
@@ -99,19 +97,20 @@ const ExpansionPanelComparator = (): JSX.Element => {
       <ExpansionPanelActions>
         <Button
           size="small"
-          variant="outlined"
           onClick={() => {
             dispatch(resetCharacterSelected())
             resetChart()
           }}
+          variant="outlined"
         >
           Cancel
         </Button>
         <Button
-          size="small"
           color="primary"
-          variant="outlined"
+          disabled={charactersSelected.length < 2}
           onClick={() => handleToggle(charactersSelected)}
+          size="small"
+          variant="outlined"
         >
           Compare
         </Button>
@@ -127,8 +126,8 @@ const SExpansionPanelDetails = styled(ExpansionPanelDetails)`
   justify-content: center;
 `
 const SBackdrop = styled(Backdrop)`
-  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
   color: #ffff;
+  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
 `
 
 export default ExpansionPanelComparator

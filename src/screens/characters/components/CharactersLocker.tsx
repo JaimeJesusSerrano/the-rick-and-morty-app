@@ -103,13 +103,13 @@ const CharactersLocker = ({ data }: CharactersLockerProps): JSX.Element => {
 }
 
 const SCardActionArea = styled(CardActionArea)`
+  background-color: ${({ theme }) => theme.palette.secondary.main};
   display: flex;
   flex-direction: row;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
 `
 const SGrid = styled(Grid)`
-  justify-content: center;
   display: flex;
+  justify-content: center;
 `
 
 const SPaper = styled(Paper)`
@@ -117,15 +117,15 @@ const SPaper = styled(Paper)`
   padding: 20px;
 `
 const CardPaper = styled(Paper)`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   padding: 20px;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
 `
 const SCard = styled(MaterialUiCard)`
-  margin-top: 10px;
   border-radius: 20px;
+  margin-top: 10px;
   line-height: 0;
 `
 const SCardMedia = styled(CardMedia)`

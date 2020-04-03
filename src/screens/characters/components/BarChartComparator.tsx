@@ -10,6 +10,7 @@ import {
   Label,
 } from 'recharts'
 import { Container } from '@material-ui/core'
+import theme from '~Theme'
 
 type DataValues = {
   name: string
@@ -45,7 +46,7 @@ const BarChartComparator = ({
         </YAxis>
         <Tooltip />
         <Legend />
-        <Bar dataKey="similarity" fill="#82ca9d" name="Similarity Level" />
+        <Bar dataKey="similarity" fill={theme.palette.primary.main} name="Similarity Level"/>
       </BarChart>
     </Container>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -43,6 +43,11 @@ const ExpansionPanelComparator = (): JSX.Element => {
 
   const distance = (compare: CompareType, compared: CompareType): number =>
     compare === compared ? 1 : 0
+
+  useEffect(() => {
+      resetChart()
+  },[charactersSelected])
+
 
   const createData = (characters: Character[]): DataComparator => {
     const compareCharacter = characters[0]

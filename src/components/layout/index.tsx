@@ -4,14 +4,14 @@ import styled from 'styled-components'
 import Sidebar from '~Components/layout/Sidebar'
 import Breadcrumbs from './Breadcrumbs'
 import { Footer } from './footer'
-import Menu from './menu'
+import Menu from './Menu'
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 const GridBreadcrumb = styled(Grid)`
-  background-color: ${({ theme }) => theme.palette.primary.light};
+  background-color: white;
   padding: 10px 15px 5px 15px;
 `
 
@@ -22,7 +22,7 @@ const Container = styled(Grid)`
 
 const ChildrenContainer = styled(Grid)`
   flex: 1;
-  padding: 5px 15px 5px 15px;
+  padding: 10px 15px 5px 15px;
 `
 
 const SContainer = styled.div`
@@ -37,19 +37,24 @@ const Layout = ({ children }: LayoutProps) => (
 
     <Container container direction="column">
       <GridBreadcrumb container>
-        <Breadcrumbs />
+        <Grid item md={1}/>
+        <Grid item xs={12} md={10}>
+          <Breadcrumbs />
+        </Grid>
+        <Grid item md={1} />
       </GridBreadcrumb>
 
       <ChildrenContainer container>
-        <Grid item xs={1} />
-        <Grid item xs={7}>
+        <Grid item xs={1} md={1} />
+        <Grid item xs={10} md={7} style={{paddingTop: 5}}>
           {children}
         </Grid>
-        <Grid item xs={1} />
-        <Grid item xs={2}>
+        <Grid item xs={1} md={1} />
+        <Grid item xs={1} md="auto" />
+        <Grid item xs={10} md={2}>
           <Sidebar />
         </Grid>
-        <Grid item xs={1} />
+        <Grid item md={1}/>
       </ChildrenContainer>
 
         <Footer />
